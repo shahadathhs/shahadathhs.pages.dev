@@ -1,0 +1,79 @@
+"use client";
+
+import { LampContainer } from "../ui/lamp";
+import { motion } from "motion/react";
+import { Typewriter } from "react-simple-typewriter";
+
+export default function HeroSection() {
+  return (
+    <LampContainer>
+      <motion.h1
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.3,
+          duration: 1.3,
+          ease: "easeInOut",
+        }}
+        className="mt-4 bg-gradient-to-br from-slate-300 to-slate-500 
+      py-4 bg-clip-text text-center text-3xl font-medium tracking-tight text-white md:text-5xl"
+      >
+        Hi, This is
+      </motion.h1>
+
+      <motion.h1
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 1,
+          duration: 2.2,
+          ease: "easeInOut",
+        }}
+        className="mt-2 bg-gradient-to-br from-slate-300 to-slate-500 
+      py-4 bg-clip-text text-center text-3xl font-medium tracking-tight text-white md:text-5xl"
+      >
+        Shahadath Hossen Sajib
+      </motion.h1>
+
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 1.7,
+          duration: 3.1,
+          ease: "easeInOut",
+        }}
+        className="mt-2 py-4 text-center text-3xl font-medium tracking-tight text-white md:text-5xl"
+      >
+        <Typewriter
+          words={["A Junior Backend Developer", "MERN Stack Developer"]}
+          loop={Infinity}
+          cursor
+          typeSpeed={100}
+          deleteSpeed={50}
+          delaySpeed={1000}
+        />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 2.4,
+          duration: 4,
+          ease: "easeInOut",
+        }}
+        className="mt-6 flex justify-center"
+      >
+        <a
+          href="https://drive.google.com/uc?export=download&id=1btsi4NyrA4ziPfLaQrvtB_EDKyFoKz9w"
+          rel="noopener noreferrer"
+          className="inline-block rounded-lg bg-gradient-to-r from-indigo-400 to-purple-400
+        px-6 py-3 font-semibold text-white text-2xl transition-all duration-300 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300"
+        >
+          Download My Resume
+        </a>
+      </motion.div>
+    </LampContainer>
+  );
+}

@@ -6,7 +6,7 @@ export default function PublicLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="container mx-auto">
+    <main>
       {/* navbar */}
       <Navbar />
 
