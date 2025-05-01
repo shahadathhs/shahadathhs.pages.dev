@@ -33,10 +33,8 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        "absolute top-0 left-0 right-0 z-[9999] bg-slate-950 transition-all transform ease-in-out duration-500 rounded-xl p-2 lg:p-4 m-3",
-        scrolled
-          ? "scale-90"
-          : ""
+        "fixed top-0 left-0 right-0 z-[9999] bg-slate-950 transition-all transform ease-in-out duration-500 rounded-xl p-2 lg:p-4 m-3",
+        scrolled ? "scale-90" : ""
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-2 lg:px-4">
