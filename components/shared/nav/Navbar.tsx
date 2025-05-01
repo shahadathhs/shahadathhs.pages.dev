@@ -33,11 +33,11 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        "sticky top-2 z-[9999] transition-all transform ease-in-out duration-500 m-3",
+        "sticky top-2 z-[9999] transition-all transform ease-in-out duration-500 my-3",
         scrolled ? "scale-90" : ""
       )}
     >
-      <div className="container mx-auto bg-white dark:bg-stone-950 flex items-center justify-between border rounded-xl p-2 lg:p-4">
+      <div className="container mx-auto bg-white dark:bg-stone-950 flex items-center justify-between border rounded-md p-2 lg:p-4">
         {/* Logo */}
         <Logo />
 
