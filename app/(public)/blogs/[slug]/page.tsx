@@ -1,16 +1,43 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { notFound, useParams } from "next/navigation";
+import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getBlogBySlug } from "@/lib/blog-service";
 import { Blog } from "@/lib/models";
 
-export default async function BlogPage() {
-  const { slug } = useParams();
-  const blog = (await getBlogBySlug(slug as string)) as unknown as Blog;
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: () => URLSearchParams;
+}) {
+  const params = (await searchParams) as unknown as {
+    slug: string;
+  };
+  const blog = (await getBlogBySlug(params.slug)) as unknown as Blog;
+
+  if (!blog) {
+    return {
+      title: "Blog Not Found",
+      description: "The requested blog post could not be found",
+    };
+  }
+
+  return {
+    title: blog.title,
+    description: blog.excerpt,
+  };
+}
+
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: () => URLSearchParams;
+}) {
+  const params = (await searchParams) as unknown as {
+    slug: string;
+  };
+  const blog = (await getBlogBySlug(params.slug)) as unknown as Blog;
 
   if (!blog) notFound();
 
@@ -31,7 +58,7 @@ export default async function BlogPage() {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <span className="text-sm text-muted-foreground">
-                {new Date(blog?.createdAt).toLocaleDateString("en-US", {
+                {new Date(blog.createdAt).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",

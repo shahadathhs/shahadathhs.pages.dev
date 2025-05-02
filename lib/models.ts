@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Document } from "mongoose";
 
 // User Schema
 const UserSchema = new mongoose.Schema({
@@ -22,6 +22,18 @@ const UserSchema = new mongoose.Schema({
 });
 
 export type Blog = {
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  thumbnailUrl: string;
+  author: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export interface BlogDocument extends Document {
   title: string;
   slug: string;
   excerpt: string;

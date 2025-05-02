@@ -1,88 +1,93 @@
 "use server";
 
-import { Blog } from "@/lib/models"
-import { slugify } from "@/lib/utils"
-import dbConnect from "./dbConnect"
+import { Blog, BlogDocument } from "@/lib/models";
+import { slugify } from "@/lib/utils";
+import dbConnect from "./dbConnect";
+import { FilterQuery } from "mongoose";
 
 export async function getFeaturedBlogs() {
-  await dbConnect()
+  await dbConnect();
 
   // Get the 3 most recent blogs
-  const blogs = await Blog.find().sort({ createdAt: -1 }).limit(3).lean()
+  const blogs = await Blog.find().sort({ createdAt: -1 }).limit(3).lean();
 
-  return blogs
+  return blogs;
 }
 
 export async function getAllBlogs(query = "", category = "") {
-  await dbConnect()
+  await dbConnect();
 
-  const filter: any = {}
+  //@ts-nocheck
+  const filter: FilterQuery<BlogDocument> = {};
 
   if (query) {
-    filter.$or = [{ title: { $regex: query, $options: "i" } }, { excerpt: { $regex: query, $options: "i" } }]
+    filter.$or = [
+      { title: { $regex: query, $options: "i" } },
+      { excerpt: { $regex: query, $options: "i" } },
+    ];
   }
 
   if (category) {
-    filter.category = category
+    filter.category = category;
   }
 
-  const blogs = await Blog.find(filter).sort({ createdAt: -1 }).lean()
+  const blogs = await Blog.find(filter).sort({ createdAt: -1 }).lean();
 
-  return blogs
+  return blogs;
 }
 
 export async function getBlogBySlug(slug: string) {
-  await dbConnect()
+  await dbConnect();
 
-  const blog = await Blog.findOne({ slug }).lean()
+  const blog = await Blog.findOne({ slug }).lean();
 
-  return blog
+  return blog;
 }
 
 export async function getBlogById(id: string) {
-  await dbConnect()
+  await dbConnect();
 
-  const blog = await Blog.findById(id).lean()
+  const blog = await Blog.findById(id).lean();
 
-  return blog
+  return blog;
 }
 
 export async function createBlog(blogData: {
-  title: string
-  excerpt: string
-  category: string
-  thumbnailUrl: string
-  content: string
+  title: string;
+  excerpt: string;
+  category: string;
+  thumbnailUrl: string;
+  content: string;
 }) {
-  await dbConnect()
+  await dbConnect();
 
-  const slug = slugify(blogData.title)
+  const slug = slugify(blogData.title);
 
   const blog = new Blog({
     ...blogData,
     slug,
     createdAt: new Date(),
     updatedAt: new Date(),
-  })
+  });
 
-  await blog.save()
+  await blog.save();
 
-  return blog
+  return blog;
 }
 
 export async function updateBlog(
   id: string,
   blogData: {
-    title: string
-    excerpt: string
-    category: string
-    thumbnailUrl: string
-    content: string
-  },
+    title: string;
+    excerpt: string;
+    category: string;
+    thumbnailUrl: string;
+    content: string;
+  }
 ) {
-  await dbConnect()
+  await dbConnect();
 
-  const slug = slugify(blogData.title)
+  const slug = slugify(blogData.title);
 
   const updatedBlog = await Blog.findByIdAndUpdate(
     id,
@@ -91,58 +96,58 @@ export async function updateBlog(
       slug,
       updatedAt: new Date(),
     },
-    { new: true },
-  )
+    { new: true }
+  );
 
-  return updatedBlog
+  return updatedBlog;
 }
 
 export async function deleteBlog(id: string) {
-  await dbConnect()
+  await dbConnect();
 
-  await Blog.findByIdAndDelete(id)
+  await Blog.findByIdAndDelete(id);
 
-  return { success: true }
+  return { success: true };
 }
 
 export async function getUserStats() {
-  await dbConnect()
+  await dbConnect();
 
   // Get total posts
-  const totalPosts = await Blog.countDocuments()
+  const totalPosts = await Blog.countDocuments();
 
   // Get posts created this month
-  const startOfMonth = new Date()
-  startOfMonth.setDate(1)
-  startOfMonth.setHours(0, 0, 0, 0)
+  const startOfMonth = new Date();
+  startOfMonth.setDate(1);
+  startOfMonth.setHours(0, 0, 0, 0);
 
   const postsThisMonth = await Blog.countDocuments({
     createdAt: { $gte: startOfMonth },
-  })
+  });
 
   // Get total views (mock data for demo)
-  const totalViews = Math.floor(Math.random() * 10000)
-  const viewsThisMonth = Math.floor(Math.random() * 2000)
+  const totalViews = Math.floor(Math.random() * 10000);
+  const viewsThisMonth = Math.floor(Math.random() * 2000);
 
   // Get categories count
   const categoriesResult = await Blog.aggregate([
     { $group: { _id: "$category", count: { $sum: 1 } } },
     { $sort: { count: -1 } },
-  ])
+  ]);
 
-  const categories = categoriesResult.length
+  const categories = categoriesResult.length;
 
   // Get popular categories
   const popularCategories = categoriesResult.slice(0, 5).map((cat) => ({
     name: cat._id,
     count: cat.count,
-  }))
+  }));
 
   // Get average read time (mock data for demo)
-  const avgReadTime = Math.floor(Math.random() * 8) + 3
+  const avgReadTime = Math.floor(Math.random() * 8) + 3;
 
   // Get recent posts
-  const recentPosts = await Blog.find().sort({ createdAt: -1 }).limit(5).lean()
+  const recentPosts = await Blog.find().sort({ createdAt: -1 }).limit(5).lean();
 
   return {
     totalPosts,
@@ -153,5 +158,5 @@ export async function getUserStats() {
     popularCategories,
     avgReadTime,
     recentPosts,
-  }
+  };
 }

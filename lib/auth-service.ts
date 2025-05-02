@@ -85,6 +85,7 @@ export async function verifyToken(token: string) {
     };
     return decoded;
   } catch (error) {
+    console.error("Token verification failed:", error);
     throw new Error("Invalid token");
   }
 }

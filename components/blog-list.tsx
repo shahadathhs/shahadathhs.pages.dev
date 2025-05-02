@@ -26,7 +26,7 @@ export async function BlogList({
       <div className="flex flex-col items-center justify-center py-12 text-center">
         <h3 className="text-lg font-medium">No blog posts found</h3>
         <p className="text-muted-foreground">
-          Try adjusting your search or filter to find what you're looking for.
+          Try adjusting your search or filter to find what you&apos;re looking for.
         </p>
       </div>
     );

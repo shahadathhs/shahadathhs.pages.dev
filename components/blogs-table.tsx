@@ -1,10 +1,9 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { Edit, Eye, MoreHorizontal, Trash, Plus } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import Link from "next/link";
+import { Edit, Eye, MoreHorizontal, Trash, Plus } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,8 +11,15 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+} from "@/components/ui/dropdown-menu";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -23,53 +29,51 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog"
-import { useToast } from "@/hooks/use-toast"
-import { useBlogs } from "@/lib/use-blogs"
-import { deleteBlog } from "@/lib/blog-service"
+} from "@/components/ui/alert-dialog";
+import { useBlogs } from "@/lib/use-blogs";
+import { deleteBlog } from "@/lib/blog-service";
+import { toast } from "sonner";
 
 export function BlogsTable() {
-  const { blogs, isLoading, mutate } = useBlogs()
-  const { toast } = useToast()
-  const router = useRouter()
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
-  const [blogToDelete, setBlogToDelete] = useState<string | null>(null)
+  const { blogs, isLoading, mutate } = useBlogs();
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [blogToDelete, setBlogToDelete] = useState<string | null>(null);
 
   const handleDelete = async () => {
-    if (!blogToDelete) return
+    if (!blogToDelete) return;
 
     try {
-      await deleteBlog(blogToDelete)
-      mutate()
-      toast({
-        title: "Blog deleted",
+      await deleteBlog(blogToDelete);
+      mutate();
+      toast("Blog deleted", {
         description: "Your blog post has been deleted successfully",
-      })
+      });
     } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Error",
+      console.error("Error deleting blog:", error);
+      toast("Error", {
         description: "Failed to delete blog post",
-      })
+      });
     } finally {
-      setBlogToDelete(null)
-      setDeleteDialogOpen(false)
+      setBlogToDelete(null);
+      setDeleteDialogOpen(false);
     }
-  }
+  };
 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-10">
         <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
       </div>
-    )
+    );
   }
 
   if (!blogs || blogs.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-10 text-center">
         <h3 className="text-lg font-medium">No blog posts found</h3>
-        <p className="text-muted-foreground">Get started by creating your first blog post</p>
+        <p className="text-muted-foreground">
+          Get started by creating your first blog post
+        </p>
         <Button asChild className="mt-4">
           <Link href="/dashboard/blogs/new">
             <Plus className="mr-2 h-4 w-4" />
@@ -77,7 +81,7 @@ export function BlogsTable() {
           </Link>
         </Button>
       </div>
-    )
+    );
   }
 
   return (
@@ -98,7 +102,9 @@ export function BlogsTable() {
               <TableRow key={blog._id}>
                 <TableCell className="font-medium">{blog.title}</TableCell>
                 <TableCell>{blog.category}</TableCell>
-                <TableCell>{new Date(blog.createdAt).toLocaleDateString()}</TableCell>
+                <TableCell>
+                  {new Date(blog.createdAt).toLocaleDateString()}
+                </TableCell>
                 <TableCell>
                   <span className="rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-800">
                     Published
@@ -130,8 +136,8 @@ export function BlogsTable() {
                       <DropdownMenuItem
                         className="text-destructive focus:text-destructive"
                         onClick={() => {
-                          setBlogToDelete(blog._id)
-                          setDeleteDialogOpen(true)
+                          setBlogToDelete(blog._id);
+                          setDeleteDialogOpen(true);
                         }}
                       >
                         <Trash className="mr-2 h-4 w-4" />
@@ -151,7 +157,8 @@ export function BlogsTable() {
           <AlertDialogHeader>
             <AlertDialogTitle>Are you sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete the blog post and remove it from our servers.
+              This action cannot be undone. This will permanently delete the
+              blog post and remove it from our servers.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -166,5 +173,5 @@ export function BlogsTable() {
         </AlertDialogContent>
       </AlertDialog>
     </>
-  )
+  );
 }

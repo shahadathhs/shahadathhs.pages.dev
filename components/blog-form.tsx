@@ -1,53 +1,63 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import Image from "next/image"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { Button } from "@/components/ui/button"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
-import { useToast } from "@/hooks/use-toast"
-import { TextEditor } from "@/components/text-editor"
-import { createBlog, updateBlog } from "@/lib/blog-service"
-
-const categories = [
-  { value: "technology", label: "Technology" },
-  { value: "design", label: "Design" },
-  { value: "business", label: "Business" },
-  { value: "lifestyle", label: "Lifestyle" },
-  { value: "health", label: "Health" },
-]
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { TextEditor } from "@/components/text-editor";
+import { createBlog, updateBlog } from "@/lib/blog-service";
+import { categories } from "@/constant/blogs";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   title: z.string().min(5, { message: "Title must be at least 5 characters" }),
-  excerpt: z.string().min(10, { message: "Excerpt must be at least 10 characters" }),
+  excerpt: z
+    .string()
+    .min(10, { message: "Excerpt must be at least 10 characters" }),
   category: z.string().min(1, { message: "Please select a category" }),
   thumbnailUrl: z.string().url({ message: "Please enter a valid URL" }),
-  content: z.string().min(50, { message: "Content must be at least 50 characters" }),
-})
+  content: z
+    .string()
+    .min(50, { message: "Content must be at least 50 characters" }),
+});
 
-type BlogFormValues = z.infer<typeof formSchema>
+type BlogFormValues = z.infer<typeof formSchema>;
 
 interface BlogFormProps {
   blog?: {
-    _id: string
-    title: string
-    excerpt: string
-    category: string
-    thumbnailUrl: string
-    content: string
-  }
+    _id: string;
+    title: string;
+    excerpt: string;
+    category: string;
+    thumbnailUrl: string;
+    content: string;
+  };
 }
 
 export function BlogForm({ blog }: BlogFormProps) {
-  const { toast } = useToast()
-  const router = useRouter()
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<BlogFormValues>({
     resolver: zodResolver(formSchema),
@@ -66,33 +76,32 @@ export function BlogForm({ blog }: BlogFormProps) {
           thumbnailUrl: "",
           content: "",
         },
-  })
+  });
 
   async function onSubmit(values: BlogFormValues) {
-    setIsSubmitting(true)
+    setIsSubmitting(true);
     try {
       if (blog) {
-        await updateBlog(blog._id, values)
-        toast({
-          title: "Blog updated",
+        await updateBlog(blog._id, values);
+        toast("Blog updated", {
           description: "Your blog post has been updated successfully",
-        })
+        });
       } else {
-        await createBlog(values)
-        toast({
-          title: "Blog created",
+        await createBlog(values);
+        toast("Blog created", {
           description: "Your blog post has been created successfully",
-        })
+        });
       }
-      router.push("/dashboard/blogs")
+      router.push("/dashboard/blogs");
     } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: blog ? "Failed to update blog post" : "Failed to create blog post",
-      })
+      console.log("Error creating/updating blog:", error);
+      toast("Error", {
+        description: blog
+          ? "Failed to update blog post"
+          : "Failed to create blog post",
+      });
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
   }
 
@@ -108,7 +117,9 @@ export function BlogForm({ blog }: BlogFormProps) {
               <FormControl>
                 <Input placeholder="Enter blog title" {...field} />
               </FormControl>
-              <FormDescription>A catchy title for your blog post</FormDescription>
+              <FormDescription>
+                A catchy title for your blog post
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -120,9 +131,15 @@ export function BlogForm({ blog }: BlogFormProps) {
             <FormItem>
               <FormLabel>Excerpt</FormLabel>
               <FormControl>
-                <Textarea placeholder="Enter a short excerpt" className="resize-none" {...field} />
+                <Textarea
+                  placeholder="Enter a short excerpt"
+                  className="resize-none"
+                  {...field}
+                />
               </FormControl>
-              <FormDescription>A brief summary of your blog post (displayed on blog cards)</FormDescription>
+              <FormDescription>
+                A brief summary of your blog post (displayed on blog cards)
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -147,7 +164,9 @@ export function BlogForm({ blog }: BlogFormProps) {
                   ))}
                 </SelectContent>
               </Select>
-              <FormDescription>The category your blog post belongs to</FormDescription>
+              <FormDescription>
+                The category your blog post belongs to
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -161,7 +180,9 @@ export function BlogForm({ blog }: BlogFormProps) {
               <FormControl>
                 <Input placeholder="Enter thumbnail URL" {...field} />
               </FormControl>
-              <FormDescription>URL to the thumbnail image (from Cloudinary)</FormDescription>
+              <FormDescription>
+                URL to the thumbnail image (from Cloudinary)
+              </FormDescription>
               {field.value && (
                 <div className="mt-2 aspect-video w-full max-w-md overflow-hidden rounded-lg border">
                   <Image
@@ -186,20 +207,32 @@ export function BlogForm({ blog }: BlogFormProps) {
               <FormControl>
                 <TextEditor value={field.value} onChange={field.onChange} />
               </FormControl>
-              <FormDescription>The main content of your blog post</FormDescription>
+              <FormDescription>
+                The main content of your blog post
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         <div className="flex gap-4">
           <Button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? (blog ? "Updating..." : "Creating...") : blog ? "Update Blog" : "Create Blog"}
+            {isSubmitting
+              ? blog
+                ? "Updating..."
+                : "Creating..."
+              : blog
+                ? "Update Blog"
+                : "Create Blog"}
           </Button>
-          <Button type="button" variant="outline" onClick={() => router.push("/dashboard/blogs")}>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => router.push("/dashboard/blogs")}
+          >
             Cancel
           </Button>
         </div>
       </form>
     </Form>
-  )
+  );
 }

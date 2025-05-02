@@ -8,6 +8,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(newBlog)
   } catch (error) {
+    console.error("Error creating blog:", error)
     return NextResponse.json({ error: "Failed to create blog" }, { status: 500 })
   }
 }

@@ -8,15 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-const categories = [
-  { value: "all", label: "All Categories" },
-  { value: "monorepo", label: "Monorepo" },
-  { value: "database", label: "Database" },
-  { value: "backend", label: "Backend" },
-  { value: "frontend", label: "Frontend" },
-  { value: "devops", label: "DevOps" },
-];
+import { categories } from "@/constant/blogs";
 
 export function CategoryFilter() {
   const router = useRouter();
