@@ -1,3 +1,5 @@
+"use server";
+
 import configuration from "@/config/configuration";
 import mongoose from "mongoose";
 

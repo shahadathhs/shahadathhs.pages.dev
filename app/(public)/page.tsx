@@ -1,3 +1,4 @@
+import { FeaturedBlogs } from "@/components/featured-blogs";
 import AboutMeSection from "@/components/home/AboutMeSection";
 import ContactSection from "@/components/home/ContactSection";
 import ExperienceSection from "@/components/home/ExperienceSection";
@@ -14,6 +15,7 @@ export default function Home() {
       <SkillsSection />
       <ContactSection />
       <ProjectSection />
+      <FeaturedBlogs />
     </main>
   );
 }
