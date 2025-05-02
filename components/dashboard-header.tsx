@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { LogOut, Menu } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { LogOut, Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,28 +11,28 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { DashboardNav } from "@/components/dashboard-nav"
-import { useAuth } from "@/lib/auth-context"
-import { useToast } from "@/hooks/use-toast"
+} from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { DashboardNav } from "@/components/dashboard-nav";
+import { useAuth } from "@/lib/auth-context";
+import { useToast } from "@/hooks/use-toast";
 
 export function DashboardHeader() {
-  const { user, logout } = useAuth()
-  const router = useRouter()
-  const { toast } = useToast()
+  const { user, logout } = useAuth();
+  const router = useRouter();
+  const { toast } = useToast();
 
   const handleLogout = async () => {
-    await logout()
+    await logout();
     toast({
       title: "Logged out",
       description: "You have been logged out successfully",
-    })
-    router.push("/")
-  }
+    });
+    router.push("/");
+  };
 
   return (
-    <header className="sticky top-0 z-40 border-b bg-background">
+    <header className="sticky top-0 z-40 p-2 border-b bg-background">
       <div className="container flex h-14 items-center justify-between">
         <div className="flex items-center gap-2 md:gap-4">
           <Sheet>
@@ -46,7 +46,7 @@ export function DashboardHeader() {
               <DashboardNav />
             </SheetContent>
           </Sheet>
-          <Link href="/dashboard" className="font-semibold">
+          <Link href="/dashboard" className="font-semibold text-xl">
             Blog Dashboard
           </Link>
         </div>
@@ -54,18 +54,19 @@ export function DashboardHeader() {
           {user && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                    {user.name.charAt(0).toUpperCase()}
-                  </div>
+                <Button
+                  variant="outline"
+                  className="relative h-8 w-8 rounded-full"
+                >
+                  {user.name.charAt(0).toUpperCase()}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
+                {/* <DropdownMenuItem asChild>
                   <Link href="/dashboard/profile">Profile</Link>
-                </DropdownMenuItem>
+                </DropdownMenuItem> */}
                 <DropdownMenuItem onClick={handleLogout}>
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Log out</span>
@@ -76,5 +77,5 @@ export function DashboardHeader() {
         </div>
       </div>
     </header>
-  )
+  );
 }

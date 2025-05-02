@@ -1,33 +1,43 @@
-"use client"
+"use client";
 
-import { useRouter, useSearchParams } from "next/navigation"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useRouter, useSearchParams } from "next/navigation";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const categories = [
-  { value: "", label: "All Categories" },
-  { value: "technology", label: "Technology" },
-  { value: "design", label: "Design" },
-  { value: "business", label: "Business" },
-  { value: "lifestyle", label: "Lifestyle" },
-  { value: "health", label: "Health" },
-]
+  { value: "all", label: "All Categories" },
+  { value: "monorepo", label: "Monorepo" },
+  { value: "database", label: "Database" },
+  { value: "backend", label: "Backend" },
+  { value: "frontend", label: "Frontend" },
+  { value: "devops", label: "DevOps" },
+];
 
 export function CategoryFilter() {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const currentCategory = searchParams.get("category") || ""
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const currentCategory = searchParams.get("category") || "all";
 
   const handleCategoryChange = (value: string) => {
-    const params = new URLSearchParams(searchParams)
+    const params = new URLSearchParams(searchParams);
 
     if (value) {
-      params.set("category", value)
+      if (value !== "all") {
+        params.set("category", value);
+      } else {
+        params.delete("category");
+      }
     } else {
-      params.delete("category")
+      params.delete("category");
     }
 
-    router.push(`/blogs?${params.toString()}`)
-  }
+    router.push(`/blogs?${params.toString()}`);
+  };
 
   return (
     <Select value={currentCategory} onValueChange={handleCategoryChange}>
@@ -42,5 +52,5 @@ export function CategoryFilter() {
         ))}
       </SelectContent>
     </Select>
-  )
+  );
 }

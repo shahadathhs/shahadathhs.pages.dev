@@ -22,18 +22,18 @@ const navItems = [
     href: "/dashboard/blogs/new",
     icon: Plus,
   },
-  {
-    title: "Settings",
-    href: "/dashboard/settings",
-    icon: Settings,
-  },
+  // {
+  //   title: "Settings",
+  //   href: "/dashboard/settings",
+  //   icon: Settings,
+  // },
 ]
 
 export function DashboardNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="grid items-start gap-2 px-2 py-4 text-sm">
+    <nav className="grid items-start gap-2 px-2 py-4 text-sm ml-2">
       {navItems.map((item) => (
         <Button
           key={item.href}

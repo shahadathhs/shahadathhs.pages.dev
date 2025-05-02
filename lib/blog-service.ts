@@ -1,9 +1,11 @@
-import { connectToDatabase } from "@/lib/db"
+"use server";
+
 import { Blog } from "@/lib/models"
 import { slugify } from "@/lib/utils"
+import dbConnect from "./dbConnect"
 
 export async function getFeaturedBlogs() {
-  await connectToDatabase()
+  await dbConnect()
 
   // Get the 3 most recent blogs
   const blogs = await Blog.find().sort({ createdAt: -1 }).limit(3).lean()
@@ -12,7 +14,7 @@ export async function getFeaturedBlogs() {
 }
 
 export async function getAllBlogs(query = "", category = "") {
-  await connectToDatabase()
+  await dbConnect()
 
   const filter: any = {}
 
@@ -30,7 +32,7 @@ export async function getAllBlogs(query = "", category = "") {
 }
 
 export async function getBlogBySlug(slug: string) {
-  await connectToDatabase()
+  await dbConnect()
 
   const blog = await Blog.findOne({ slug }).lean()
 
@@ -38,7 +40,7 @@ export async function getBlogBySlug(slug: string) {
 }
 
 export async function getBlogById(id: string) {
-  await connectToDatabase()
+  await dbConnect()
 
   const blog = await Blog.findById(id).lean()
 
@@ -52,7 +54,7 @@ export async function createBlog(blogData: {
   thumbnailUrl: string
   content: string
 }) {
-  await connectToDatabase()
+  await dbConnect()
 
   const slug = slugify(blogData.title)
 
@@ -78,7 +80,7 @@ export async function updateBlog(
     content: string
   },
 ) {
-  await connectToDatabase()
+  await dbConnect()
 
   const slug = slugify(blogData.title)
 
@@ -96,7 +98,7 @@ export async function updateBlog(
 }
 
 export async function deleteBlog(id: string) {
-  await connectToDatabase()
+  await dbConnect()
 
   await Blog.findByIdAndDelete(id)
 
@@ -104,7 +106,7 @@ export async function deleteBlog(id: string) {
 }
 
 export async function getUserStats() {
-  await connectToDatabase()
+  await dbConnect()
 
   // Get total posts
   const totalPosts = await Blog.countDocuments()

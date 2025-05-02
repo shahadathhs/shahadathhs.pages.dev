@@ -1,32 +1,18 @@
-import Image from "next/image"
-import Link from "next/link"
-import { notFound } from "next/navigation"
-import { ArrowLeft } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { getBlogBySlug } from "@/lib/blog-service"
+"use client";
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const blog = await getBlogBySlug(params.slug)
+import Image from "next/image";
+import Link from "next/link";
+import { notFound, useParams } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { getBlogBySlug } from "@/lib/blog-service";
+import { Blog } from "@/lib/models";
 
-  if (!blog) {
-    return {
-      title: "Blog Not Found",
-      description: "The requested blog post could not be found",
-    }
-  }
+export default async function BlogPage() {
+  const { slug } = useParams();
+  const blog = (await getBlogBySlug(slug as string)) as unknown as Blog;
 
-  return {
-    title: blog.title,
-    description: blog.excerpt,
-  }
-}
-
-export default async function BlogPage({ params }: { params: { slug: string } }) {
-  const blog = await getBlogBySlug(params.slug)
-
-  if (!blog) {
-    notFound()
-  }
+  if (!blog) notFound();
 
   return (
     <main className="container max-w-4xl py-10">
@@ -39,18 +25,22 @@ export default async function BlogPage({ params }: { params: { slug: string } })
 
       <article className="prose prose-stone mx-auto dark:prose-invert lg:prose-lg">
         <div className="not-prose mb-8">
-          <h1 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">{blog.title}</h1>
+          <h1 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+            {blog.title}
+          </h1>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <span className="text-sm text-muted-foreground">
-                {new Date(blog.createdAt).toLocaleDateString("en-US", {
+                {new Date(blog?.createdAt).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
                 })}
               </span>
             </div>
-            <span className="rounded-full bg-muted px-3 py-1 text-sm font-medium">{blog.category}</span>
+            <span className="rounded-full bg-muted px-3 py-1 text-sm font-medium">
+              {blog.category}
+            </span>
           </div>
         </div>
 
@@ -67,5 +57,5 @@ export default async function BlogPage({ params }: { params: { slug: string } })
         <div dangerouslySetInnerHTML={{ __html: blog.content }} />
       </article>
     </main>
-  )
+  );
 }

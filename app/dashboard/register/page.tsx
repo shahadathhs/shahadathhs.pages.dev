@@ -78,6 +78,8 @@ export default function RegisterPage() {
     }
   }
 
+  return null
+
   return (
     <div className="container flex h-screen items-center justify-center">
       <Card className="mx-auto w-full max-w-md">

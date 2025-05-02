@@ -1,28 +1,34 @@
-import { Suspense } from "react"
-import { BlogList } from "@/components/blog-list"
-import { BlogSearch } from "@/components/blog-search"
-import { CategoryFilter } from "@/components/category-filter"
-import { Skeleton } from "@/components/ui/skeleton"
+import { Suspense } from "react";
+import { BlogList } from "@/components/blog-list";
+import { BlogSearch } from "@/components/blog-search";
+import { CategoryFilter } from "@/components/category-filter";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export const metadata = {
   title: "All Blogs",
   description: "Browse all our blog posts",
-}
+};
 
-export default function BlogsPage({
+export default async function BlogsPage({
   searchParams,
 }: {
-  searchParams: { query?: string; category?: string }
+  searchParams: () => URLSearchParams;
 }) {
-  const query = searchParams.query || ""
-  const category = searchParams.category || ""
+  const params = (await searchParams) as unknown as {
+    query: string;
+    category: string;
+  };
+  const query = params.query || "";
+  const category = params.category || "";
 
   return (
-    <main className="container py-10">
+    <main className="py-10">
       <div className="flex flex-col space-y-6">
         <div className="flex flex-col space-y-2">
           <h1 className="text-3xl font-bold tracking-tight">All Blog Posts</h1>
-          <p className="text-muted-foreground">Browse through our collection of blog posts</p>
+          <p className="text-muted-foreground">
+            Browse through our collection of blog posts
+          </p>
         </div>
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <BlogSearch />
@@ -49,5 +55,5 @@ export default function BlogsPage({
         </Suspense>
       </div>
     </main>
-  )
+  );
 }

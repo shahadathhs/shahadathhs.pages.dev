@@ -1,3 +1,5 @@
+"use server";
+
 import configuration from "@/config/configuration";
 import { User } from "@/lib/models";
 import bcrypt from "bcryptjs";
