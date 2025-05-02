@@ -184,7 +184,7 @@ export default function Footer() {
                 </Link>
               </Button>
 
-              <Button size="lg" className="w-full" onClick={scrollToTop}>
+              <Button size="lg" className="w-full hover:cursor-pointer" onClick={scrollToTop}>
                 <ArrowUp className="mr-2 h-4 w-4" />
                 Back to Top
               </Button>

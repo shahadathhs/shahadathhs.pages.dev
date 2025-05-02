@@ -83,7 +83,7 @@ export default function ContactSection() {
   };
 
   return (
-    <div className="grid md:grid-cols-2 relative overflow-hidden mb-10 items-center gap-12 p-8 lg:p-12 border rounded">
+    <div className="grid md:grid-cols-2 relative overflow-hidden items-center gap-12 p-8 lg:p-12 border rounded">
       {/* info */}
       <div className="space-y-8 max-w-[450px]">
         <h2 className="text-3xl font-semibold">
