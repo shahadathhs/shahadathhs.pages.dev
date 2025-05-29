@@ -40,7 +40,7 @@ export default function Navbar() {
     >
       <div
         className={cn(
-          "relative transition-all transform ease-in-out duration-500 container mx-auto bg-white dark:bg-slate-900 flex items-center justify-between border rounded p-2 lg:p-4",
+          "relative overflow-clip transition-all transform ease-in-out duration-500 container mx-auto bg-white dark:bg-slate-900 flex items-center justify-between border rounded p-2 lg:p-4",
           scrolled ? "max-w-7xl" : ""
         )}
       >
