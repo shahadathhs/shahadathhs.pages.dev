@@ -1,5 +1,6 @@
 "use client";
 
+import { BorderBeam } from "@/components/magicui/border-beam";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -37,14 +38,14 @@ export default function ReferralPage() {
   useEffect(() => {
     const generateQR = async () => {
       try {
-        const qrData = JSON.stringify({
-          action: "networking",
-          linkedin: profileData.linkedin,
-          github: profileData.github,
-          website: profileData.website,
-          name: profileData.name,
-          title: profileData.title,
-        });
+        const qrData = `
+📇 Name: ${profileData.name}
+💼 Title: ${profileData.title}
+🔗 LinkedIn: ${profileData.linkedin}
+🐙 GitHub: ${profileData.github}
+🌐 Website: ${profileData.website}
+`;
+
         const url = await QRCode.toDataURL(qrData, {
           width: 300,
           margin: 2,
@@ -85,7 +86,7 @@ END:VCARD`;
   };
 
   return (
-    <div className="my-10 py-10 px-16 border rounded">
+    <div className="my-10 py-10 px-4 md:px-16 border rounded relative overflow-clip">
       <div className="container mx-auto max-w-4xl">
         <div className="mb-6">
           <Link href="/" className="flex justify-center">
@@ -153,14 +154,14 @@ END:VCARD`;
                 </Link>
               </Button>
 
-              <Button className="w-full" variant="outline">
-                <Link
+              <Button asChild className="w-full" variant="outline">
+                <a
                   href={downloadUrl}
                   download="Shahadath_Hossen_Sajib_Resume.pdf"
                 >
                   <Download className="h-4 w-4 inline-block mr-2" />
                   Download Resume
-                </Link>
+                </a>
               </Button>
 
               <Button
@@ -175,6 +176,8 @@ END:VCARD`;
           </Card>
         </div>
       </div>
+      {/* border beam */}
+      <BorderBeam duration={40} size={300} />
     </div>
   );
 }
