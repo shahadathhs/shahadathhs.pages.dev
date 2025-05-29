@@ -9,10 +9,9 @@ import {
   IconTestPipe,
   IconTools,
 } from "@tabler/icons-react";
-import { TypewriterEffectSmooth } from "../ui/typewriter-effect";
-import { words } from "@/constant/skillsData";
-import { Badge } from "../ui/badge";
+// import { TypewriterEffectSmooth } from "../ui/typewriter-effect";
 import { BorderBeam } from "../magicui/border-beam";
+import { Badge } from "../ui/badge";
 
 export default function SkillsSection() {
   // 1) change description to string[]
@@ -21,12 +20,15 @@ export default function SkillsSection() {
     description: string[];
   }> = [
     { title: "Languages", description: ["JavaScript", "TypeScript"] },
-    { title: "Backend", description: ["Node.js", "Express"] },
-    { title: "Databases", description: ["MongoDB", "Mongoose"] },
+    { title: "Backend", description: ["Node.js", "Express", "Nest.js"] },
+    {
+      title: "Databases",
+      description: ["MongoDB", "Mongoose", "PostgreSQL", "Prisma"],
+    },
+    { title: "Authentication", description: ["JWT", "OAuth 2"] },
     { title: "Testing", description: ["Jest", "Supertest"] },
-    { title: "Tools", description: ["Git", "VS Code", "Postman"] },
+    { title: "Tools", description: ["Git", "VS Code", "Postman", "Render", "Vercel"] },
     { title: "Monorepo Tools", description: ["Turborepo", "Nx"] },
-    { title: "Currently Learning", description: ["PostgreSQL", "Prisma"] },
     { title: "Package Manager", description: ["npm", "pnpm"] },
   ];
 
@@ -38,17 +40,23 @@ export default function SkillsSection() {
     Testing: <IconTestPipe className="h-8 w-8" />,
     Tools: <IconTools className="h-8 w-8" />,
     "Monorepo Tools": <IconTerminal2 className="h-8 w-8" />,
-    "Currently Learning": <IconSchool className="h-8 w-8" />,
+    Authentication: <IconSchool className="h-8 w-8" />,
     "Package Manager": <IconPackage className="h-8 w-8" />,
   };
 
   return (
-    <div className="my-10 2xl:border rounded-md relative overflow-clip">
-      <div className="flex flex-col items-center text-xl 2xl:mt-10 justify-center">
-        <TypewriterEffectSmooth words={words} />
+    <div className="my-10 xl:border rounded-md relative overflow-clip md:px-10">
+      <div className="xl:mt-12 md:p-6">
+        {/* <TypewriterEffectSmooth words={words} /> */}
+        <h2 className="text-2xl md:text-4xl mb-4 font-bold text-black dark:text-white max-w-4xl">
+          Know about my skills
+        </h2>
+        <p className="text-neutral-700 dark:text-neutral-300 text-base max-w-lg">
+          I always look forward to continuous learning and improving myself.
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 py-10 max-w-7xl mx-auto relative z-10">
+      <div className="md:px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 py-12 max-w-7xl mx-auto relative z-10">
         {skills.map((skill, idx) => (
           <Skill
             key={skill.title}
@@ -64,7 +72,7 @@ export default function SkillsSection() {
         duration={40}
         size={300}
         reverse
-        className="from-transparent via-green-500 to-transparent opacity-0 2xl:opacity-100"
+        className="from-transparent via-green-500 to-transparent opacity-0 xl:opacity-100"
       />
     </div>
   );

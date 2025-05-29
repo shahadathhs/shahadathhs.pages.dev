@@ -1,5 +1,9 @@
 import ContactSection from "@/components/home/ContactSection";
 
 export default function ContactPage() {
-  return <ContactSection />;
+  return (
+    <div className="mt-12">
+      <ContactSection />
+    </div>
+  );
 }

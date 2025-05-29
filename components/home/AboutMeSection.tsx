@@ -1,16 +1,15 @@
 "use client";
 
-import React from "react";
+import { Database, Server, ShieldCheck, User } from "lucide-react";
+import { motion } from "motion/react";
 import { WarpBackground } from "../magicui/warp-background";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
 } from "../ui/card";
-import { User, Server, Database, ShieldCheck } from "lucide-react";
-import { motion } from "motion/react";
 
 const features = [
   {
@@ -44,7 +43,7 @@ export default function AboutMeSection() {
     <WarpBackground>
       <section
         id="about"
-        className="container mx-auto flex flex-col md:flex-row items-center gap-10 p-2 md:p-4 lg:p-8"
+        className="container mx-auto flex flex-col md:flex-row items-center gap-10 p-2 md:p-4"
       >
         {/* Text & Features */}
         <div className="flex-1 space-y-6">
@@ -54,7 +53,7 @@ export default function AboutMeSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-200">
+            <h2 className="text-2xl md:text-4xl mb-4 font-bold text-black dark:text-white max-w-4xl">
               About Me
             </h2>
           </motion.div>
@@ -65,11 +64,15 @@ export default function AboutMeSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <p className="mt-2 text-lg text-gray-700">
-              I&apos;m a backend developer passionate about building secure,
-              efficient, and scalable applications. With expertise in
-              server-side architecture, database design, and API security, I
-              thrive on transforming complex challenges into elegant solutions.
+            <p className="mt-2 text-neutral-700 dark:text-neutral-300 text-base">
+              I’m a backend developer passionate about building scalable,
+              efficient, secure server-side applications. I’m deeply focused on
+              mastering backend architecture, database design, API security, and
+              real-world system design. I aim to become a highly skilled backend
+              engineer, capable of building robust, scalable systems and
+              contributing to complex infrastructure. I’m excited to learn,
+              grow, and collaborate with innovative teams that value clean code,
+              scalability, and strong engineering practices.
             </p>
           </motion.div>
 

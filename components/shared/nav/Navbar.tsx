@@ -1,11 +1,12 @@
 "use client";
 
+import { BorderBeam } from "@/components/magicui/border-beam";
+import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { MobileNavDropdown } from "./utils/MobileNavDropdown";
-import { LargeNavLinks } from "./utils/LargeNavLinks";
 import Logo from "../logo/Logo";
 import { ModeToggle } from "../ModeToggle";
-import { cn } from "@/lib/utils";
+import { LargeNavLinks } from "./utils/LargeNavLinks";
+import { MobileNavDropdown } from "./utils/MobileNavDropdown";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -33,11 +34,11 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        "sticky top-2 z-[9999] transition-all transform ease-in-out duration-500 my-3",
+        "sticky top-2 z-[9999] transition-all transform ease-in-out duration-500 mt-3",
         scrolled ? "scale-90" : ""
       )}
     >
-      <div className="container mx-auto bg-white dark:bg-stone-950 flex items-center justify-between border rounded-md p-2 lg:p-4">
+      <div className="container bg-white dark:bg-slate-900 mx-auto flex items-center justify-between border rounded p-2 lg:p-4">
         {/* Logo */}
         <Logo />
 
@@ -52,6 +53,13 @@ export default function Navbar() {
           {/* Mode Toggle */}
           <ModeToggle />
         </div>
+
+        <BorderBeam
+          duration={40}
+          size={100}
+          reverse
+          className="from-transparent via-green-500 to-transparent"
+        />
       </div>
     </nav>
   );

@@ -1,25 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import {
-  Facebook,
-  Github,
-  Linkedin,
-  Twitter,
-  ArrowUp,
-  Copy,
-  Check,
-  FileText,
-} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { quickLinks } from "@/constant/navigationLinks";
+import { ArrowUp, Check, Copy, FileText } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+import SocialLinks from "./SocialLinks";
 
 export default function Footer() {
   const [copied, setCopied] = useState(false);
@@ -40,7 +26,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto py-12">
         <div className="flex flex-col md:flex-row justify-between gap-8">
           {/* info */}
           <div className="space-y-4 max-w-lg">
@@ -55,83 +41,7 @@ export default function Footer() {
             </p>
 
             {/* Social Links */}
-            <div className="flex space-x-4 mt-6">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Link
-                      href="https://www.linkedin.com/in/shahadathhs/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <Linkedin className="h-5 w-5" />
-                      <span className="sr-only">LinkedIn</span>
-                    </Link>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>LinkedIn</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Link
-                      href="https://x.com/shahadathhs"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <Twitter className="h-5 w-5" />
-                      <span className="sr-only">Twitter</span>
-                    </Link>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Twitter</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Link
-                      href="https://web.facebook.com/shahadathhs"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <Facebook className="h-5 w-5" />
-                      <span className="sr-only">Facebook</span>
-                    </Link>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Facebook</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Link
-                      href="https://github.com/shahadathhs"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <Github className="h-5 w-5" />
-                      <span className="sr-only">GitHub</span>
-                    </Link>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>GitHub</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
+            <SocialLinks/>
 
             {/* email */}
             <div className="flex items-center space-x-2">
@@ -184,7 +94,11 @@ export default function Footer() {
                 </Link>
               </Button>
 
-              <Button size="lg" className="w-full hover:cursor-pointer" onClick={scrollToTop}>
+              <Button
+                size="lg"
+                className="w-full hover:cursor-pointer"
+                onClick={scrollToTop}
+              >
                 <ArrowUp className="mr-2 h-4 w-4" />
                 Back to Top
               </Button>
