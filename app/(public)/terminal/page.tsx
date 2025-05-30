@@ -24,11 +24,7 @@ export default function TerminalPage() {
           </p>
         </div>
 
-        <div className="border rounded shadow  relative h-[400px] overflow-x-clip">
-          {/* terminal div */}
-          <Terminal />
-          <BorderBeam duration={40} size={300} />
-        </div>
+        <Terminal />
       </div>
 
       {/* border beam */}

@@ -31,7 +31,7 @@ export default function FloatingActionMenu() {
   ];
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-3 right-3 z-50">
       <div className="flex flex-col items-end space-y-3">
         {/* Menu Items */}
         {isOpen && (
@@ -53,7 +53,7 @@ export default function FloatingActionMenu() {
                   <Button
                     size="lg"
                     className={cn(
-                      "rounded-full shadow-lg text-white border-0 h-14 w-14 p-0",
+                      "rounded-full shadow-lg text-white border-0 h-10 w-10 p-0",
                       item.color
                     )}
                     onClick={() => setIsOpen(false)}
@@ -75,7 +75,7 @@ export default function FloatingActionMenu() {
           size="lg"
           onClick={() => setIsOpen(!isOpen)}
           className={cn(
-            "rounded-full shadow-lg transition-all duration-300 h-16 w-16 p-0",
+            "rounded-full shadow-lg transition-all duration-300 h-12 w-12 p-0",
             isOpen
               ? "bg-red-500 hover:bg-red-600 rotate-45"
               : "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
