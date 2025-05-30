@@ -1,29 +1,21 @@
 "use client";
 
-import type React from "react";
-
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import type { TMessage } from "@/types/chatMessage";
 import { ArrowLeft, Bot, Send, User } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import type React from "react";
+import { useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export default function ChatBot() {
   const [history, setHistory] = useState<TMessage[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-  // const scrollToBottom = () => {
-  //   messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  // };
-
-  // useEffect(() => {
-  //   scrollToBottom();
-  // }, [history]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -136,8 +128,10 @@ export default function ChatBot() {
                       : "bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                   }`}
                 >
-                  <div className="whitespace-pre-wrap break-words">
-                    {message.text}
+                  <div className="prose dark:prose-invert max-w-none">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {message.text}
+                    </ReactMarkdown>
                   </div>
                 </div>
 
@@ -178,8 +172,6 @@ export default function ChatBot() {
                 </div>
               </div>
             )}
-
-            <div ref={messagesEndRef} />
           </div>
 
           {/* Input Area */}

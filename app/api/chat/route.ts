@@ -1,4 +1,5 @@
 import configuration from "@/config/configuration";
+import { systemPromptText } from "@/constant/systemPromptText";
 import { TMessage } from "@/types/chatMessage";
 import { GoogleGenAI } from "@google/genai";
 import { NextRequest, NextResponse } from "next/server";
@@ -11,11 +12,7 @@ export async function POST(req: NextRequest) {
 
   // * 1 Build chat session with dynamic history (including system prompt)
   const systemPrompt = {
-    parts: [
-      {
-        text: "You are Sajib’s friendly portfolio assistant. Answer questions about his skills, projects, and background. Respond using Markdown formatting when appropriate.",
-      },
-    ],
+    parts: [{ text: systemPromptText }],
     role: "model",
   };
 
