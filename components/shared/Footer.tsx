@@ -26,7 +26,7 @@ export default function Footer() {
 
   return (
     <footer className="relative">
-      <div className="absolute inset-x-0 top-1 h-px w-full bg-neutral-200/80 dark:bg-neutral-800/80">
+      <div className="absolute inset-x-0 -top-[1px] h-px w-full bg-neutral-200/80 dark:bg-neutral-800/80">
         <div className="absolute mx-auto h-px w-full bg-gradient-to-r from-transparent via-stone-500 to-transparent" />
       </div>
       <div className="container mx-auto py-12">

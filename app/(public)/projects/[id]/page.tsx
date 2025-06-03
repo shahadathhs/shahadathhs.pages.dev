@@ -1,12 +1,13 @@
 "use client";
 
-import Link from "next/link";
-import { notFound, useParams } from "next/navigation";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import ImageSlider from "@/components/shared/ImageSlider";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { projects } from "@/constant/projectData";
-import ImageSlider from "@/components/shared/ImageSlider";
+import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import Link from "next/link";
+import { notFound, useParams } from "next/navigation";
 
 export default function ProjectPage() {
   const { id } = useParams();
@@ -15,30 +16,61 @@ export default function ProjectPage() {
   if (!project) notFound();
 
   return (
-    <main className="my-10">
-      <div className="mb-8">
-        <Button variant="ghost" asChild className="mb-4">
-          <Link href="/projects">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Projects
-          </Link>
-        </Button>
+    <main className="container">
+      <div className="w-full max-w-4xl mx-auto md:border-l md:border-r py-10">
+        <div className="flex justify-center">
+          <Button variant="ghost" asChild className="mb-4">
+            <Link href="/projects">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Projects
+            </Link>
+          </Button>
+        </div>
+        <div className="text-center max-w-3xl mx-auto md:px-4">
+          <h1 className="text-3xl font-bold tracking-tight">{project.title}</h1>
+          <p className="text-muted-foreground mt-2 text-lg">
+            {project.shortDescription}
+          </p>
+        </div>
 
-        <h1 className="text-3xl font-bold tracking-tight">{project.title}</h1>
-        <p className="text-muted-foreground mt-2 text-lg">
-          {project.shortDescription}
-        </p>
-      </div>
+        <div className="grid grid-cols-1 gap-5 max-w-3xl mx-auto md:px-4 pt-5">
+          <ImageSlider images={project.images} />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2">
-          <ImageSlider images={project.images} className="mb-8" />
+          <div className="space-y-5">
+            <div className="gap-3 grid grid-cols-2">
+              {project?.liveLink && (
+                <Button asChild className="w-full" variant="outline">
+                  <Link
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    Live Demo
+                  </Link>
+                </Button>
+              )}
 
-          <div className="space-y-6">
+              <Button asChild className="w-full" variant="outline">
+                <Link
+                  href={project.repositoryLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github className="mr-2 h-4 w-4" />
+                  Source Code
+                </Link>
+              </Button>
+            </div>
+
+            <Separator />
+
             <div>
               <h2 className="text-2xl font-semibold mb-3">Project Overview</h2>
               <p className="text-muted-foreground">{project.description}</p>
             </div>
+
+            <Separator />
 
             <div>
               <h2 className="text-2xl font-semibold mb-3">Core Features</h2>
@@ -49,6 +81,8 @@ export default function ProjectPage() {
               </ul>
             </div>
 
+            <Separator />
+
             <div>
               <h2 className="text-2xl font-semibold mb-3">Challenges Faced</h2>
               <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
@@ -58,78 +92,14 @@ export default function ProjectPage() {
               </ul>
             </div>
 
+            <Separator />
+
             <div>
-              <h2 className="text-2xl font-semibold mb-3">Future Plans</h2>
-              <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
-                {project.futurePlans.map((plan, index) => (
-                  <li key={index}>{plan}</li>
+              <h2 className="text-2xl font-semibold mb-3">Core Technologies</h2>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {project.coreTechnology.map((tech, index) => (
+                  <Badge key={index}>{tech}</Badge>
                 ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-8">
-          <div className="bg-muted/50 p-6 rounded-lg">
-            <h2 className="text-xl font-semibold mb-4">Project Details</h2>
-
-            <div className="space-y-4">
-              <div>
-                <h3 className="font-medium">Core Technologies</h3>
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {project.coreTechnology.map((tech, index) => (
-                    <span
-                      key={index}
-                      className="px-2 py-1 bg-background text-sm rounded-md"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <Separator />
-
-              <div>
-                <h3 className="font-medium">Technology Versions</h3>
-                <div className="mt-2 space-y-2">
-                  {Object.entries(project.versionInfo).map(
-                    ([tech, version]) => (
-                      <div key={tech} className="flex justify-between">
-                        <span className="text-muted-foreground">{tech}</span>
-                        <span className="font-mono text-sm">{version}</span>
-                      </div>
-                    )
-                  )}
-                </div>
-              </div>
-
-              <Separator />
-
-              <div className="space-y-3">
-                {project?.liveLink && (
-                  <Button asChild className="w-full" variant="outline">
-                    <Link
-                      href={project.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Live Demo
-                    </Link>
-                  </Button>
-                )}
-
-                <Button asChild className="w-full" variant="outline">
-                  <Link
-                    href={project.repositoryLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="mr-2 h-4 w-4" />
-                    Source Code
-                  </Link>
-                </Button>
               </div>
             </div>
           </div>
