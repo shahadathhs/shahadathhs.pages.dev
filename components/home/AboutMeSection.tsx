@@ -12,18 +12,18 @@ import {
 } from "../ui/card";
 
 const features = [
-  {
-    title: "Fullstack MERN Development",
-    description:
-      "Building robust applications using MongoDB, Express, React (with React Router v7), and Node.js.",
-    icon: Server,
-  },
-  {
-    title: "Next.js & SSR",
-    description:
-      "Creating fast, SEO-friendly apps with server-side rendering, dynamic routing, and optimized performance.",
-    icon: Database,
-  },
+  // {
+  //   title: "Fullstack MERN Development",
+  //   description:
+  //     "Building robust applications using MongoDB, Express, React (with React Router v7), and Node.js.",
+  //   icon: Server,
+  // },
+  // {
+  //   title: "Next.js",
+  //   description:
+  //     "Creating fast, SEO-friendly apps with server-side rendering, dynamic routing, and optimized performance.",
+  //   icon: Database,
+  // },
   {
     title: "API Design",
     description: "Creating RESTful APIs for seamless data exchange.",
