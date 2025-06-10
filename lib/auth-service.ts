@@ -1,10 +1,10 @@
-"use server";
+'use server';
 
-import configuration from "@/config/configuration";
-import { User } from "@/lib/models";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import dbConnect from "./dbConnect";
+import configuration from '@/config/configuration';
+import { User } from '@/lib/models';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import dbConnect from './dbConnect';
 
 export async function registerUser({
   name,
@@ -20,7 +20,7 @@ export async function registerUser({
   // Check if user already exists
   const existingUser = await User.findOne({ email });
   if (existingUser) {
-    throw new Error("User already exists");
+    throw new Error('User already exists');
   }
 
   // Hash password
@@ -33,7 +33,6 @@ export async function registerUser({
     email,
     password: hashedPassword,
   });
-
 
   await user.save();
 
@@ -50,18 +49,18 @@ export async function login(email: string, password: string) {
   // Find user
   const user = await User.findOne({ email });
   if (!user) {
-    throw new Error("Invalid credentials");
+    throw new Error('Invalid credentials');
   }
 
   // Check password
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
-    throw new Error("Invalid credentials");
+    throw new Error('Invalid credentials');
   }
 
   // Generate JWT token
   const token = jwt.sign({ id: user._id }, configuration?.jwtSecret as string, {
-    expiresIn: "7d",
+    expiresIn: '7d',
   });
 
   return {
@@ -85,7 +84,7 @@ export async function verifyToken(token: string) {
     };
     return decoded;
   } catch (error) {
-    console.error("Token verification failed:", error);
-    throw new Error("Invalid token");
+    console.error('Token verification failed:', error);
+    throw new Error('Invalid token');
   }
 }

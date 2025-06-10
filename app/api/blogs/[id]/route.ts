@@ -1,25 +1,25 @@
-import { type NextRequest, NextResponse } from "next/server";
-import { getBlogById, updateBlog, deleteBlog } from "@/lib/blog-service";
+import { type NextRequest, NextResponse } from 'next/server';
+import { getBlogById, updateBlog, deleteBlog } from '@/lib/blog-service';
 
 export async function GET(
   request: NextRequest,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  { params }: { params: any }
+  { params }: { params: any },
 ) {
   const { id } = await params;
   try {
     const blog = await getBlogById(id);
 
     if (!blog) {
-      return NextResponse.json({ error: "Blog not found" }, { status: 404 });
+      return NextResponse.json({ error: 'Blog not found' }, { status: 404 });
     }
 
     return NextResponse.json(blog);
   } catch (error) {
-    console.error("Error fetching blog:", error);
+    console.error('Error fetching blog:', error);
     return NextResponse.json(
-      { error: "Failed to fetch blog" },
-      { status: 500 }
+      { error: 'Failed to fetch blog' },
+      { status: 500 },
     );
   }
 }
@@ -27,7 +27,7 @@ export async function GET(
 export async function PUT(
   request: NextRequest,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  { params }: { params: any }
+  { params }: { params: any },
 ) {
   const { id } = await params;
   try {
@@ -36,10 +36,10 @@ export async function PUT(
 
     return NextResponse.json(updatedBlog);
   } catch (error) {
-    console.error("Error updating blog:", error);
+    console.error('Error updating blog:', error);
     return NextResponse.json(
-      { error: "Failed to update blog" },
-      { status: 500 }
+      { error: 'Failed to update blog' },
+      { status: 500 },
     );
   }
 }
@@ -47,7 +47,7 @@ export async function PUT(
 export async function DELETE(
   request: NextRequest,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  { params }: { params: any }
+  { params }: { params: any },
 ) {
   const { id } = await params;
   try {
@@ -55,10 +55,10 @@ export async function DELETE(
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Error deleting blog:", error);
+    console.error('Error deleting blog:', error);
     return NextResponse.json(
-      { error: "Failed to delete blog" },
-      { status: 500 }
+      { error: 'Failed to delete blog' },
+      { status: 500 },
     );
   }
 }

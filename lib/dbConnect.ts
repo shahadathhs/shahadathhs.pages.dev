@@ -1,13 +1,13 @@
-"use server";
+'use server';
 
-import configuration from "@/config/configuration";
-import mongoose from "mongoose";
+import configuration from '@/config/configuration';
+import mongoose from 'mongoose';
 
 const mongoURI = configuration.mongoURL;
 
 if (!mongoURI) {
   throw new Error(
-    "Please define the mongoURL environment variable inside .env.local"
+    'Please define the mongoURL environment variable inside .env.local',
   );
 }
 

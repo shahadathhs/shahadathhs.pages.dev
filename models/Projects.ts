@@ -1,4 +1,4 @@
-import mongoose, { Document, Model } from "mongoose";
+import mongoose, { Document, Model } from 'mongoose';
 
 export interface IProject extends Document {
   title: string;
@@ -22,11 +22,11 @@ const projectSchema = new mongoose.Schema<IProject>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 // * Prevent model overwrite upon hot reloading in development
 const Project: Model<IProject> =
-  mongoose.models.Project || mongoose.model<IProject>("Project", projectSchema);
+  mongoose.models.Project || mongoose.model<IProject>('Project', projectSchema);
 
 export default Project;

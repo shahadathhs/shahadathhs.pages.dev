@@ -1,8 +1,8 @@
-import mongoose, { Document, Model } from "mongoose";
+import mongoose, { Document, Model } from 'mongoose';
 
 export const USER_ROLES = {
-  USER: "user",
-  ADMIN: "admin",
+  USER: 'user',
+  ADMIN: 'admin',
 };
 
 export interface IUser extends Document {
@@ -16,19 +16,19 @@ const UserSchema = new mongoose.Schema<IUser>(
   {
     name: {
       type: String,
-      required: [true, "Please provide a name"],
+      required: [true, 'Please provide a name'],
       trim: true,
     },
     email: {
       type: String,
-      required: [true, "Please provide an email"],
+      required: [true, 'Please provide an email'],
       unique: true,
       lowercase: true,
       trim: true,
     },
     password: {
       type: String,
-      required: [true, "Please provide a password"],
+      required: [true, 'Please provide a password'],
     },
     role: {
       type: String,
@@ -38,11 +38,11 @@ const UserSchema = new mongoose.Schema<IUser>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 // * Prevent model overwrite upon hot-reloading in development
 const User: Model<IUser> =
-  mongoose?.models?.User || mongoose.model<IUser>("User", UserSchema);
+  mongoose?.models?.User || mongoose.model<IUser>('User', UserSchema);
 
 export default User;

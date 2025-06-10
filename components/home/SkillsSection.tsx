@@ -5,6 +5,7 @@ import {
   IconPackage,
   IconSchool,
   IconServer,
+  IconStackFront,
   IconTerminal2,
   IconTestPipe,
   IconTools,
@@ -35,6 +36,7 @@ export default function SkillsSection() {
 
   const iconMap: Record<string, React.ReactNode> = {
     Languages: <IconLanguage className="h-8 w-8" />,
+    Frontend: <IconStackFront />,
     Backend: <IconServer className="h-8 w-8" />,
     Databases: <IconDatabase className="h-8 w-8" />,
     Testing: <IconTestPipe className="h-8 w-8" />,

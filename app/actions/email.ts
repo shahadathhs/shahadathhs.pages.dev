@@ -1,8 +1,8 @@
-"use server";
+'use server';
 
-import { EmailTemplate } from "@/components/template/email-template";
-import { Resend } from "resend";
-import { z } from "zod";
+import { EmailTemplate } from '@/components/template/email-template';
+import { Resend } from 'resend';
+import { z } from 'zod';
 
 // Initialize Resend with your API key
 // You'll need to add RESEND_API_KEY to your environment variables
@@ -12,14 +12,14 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const ContactFormSchema = z.object({
   name: z
     .string()
-    .min(2, { message: "Name must be at least 2 characters long" }),
-  email: z.string().email({ message: "Please enter a valid email address" }),
+    .min(2, { message: 'Name must be at least 2 characters long' }),
+  email: z.string().email({ message: 'Please enter a valid email address' }),
   subject: z
     .string()
-    .min(3, { message: "Subject must be at least 3 characters long" }),
+    .min(3, { message: 'Subject must be at least 3 characters long' }),
   message: z
     .string()
-    .min(10, { message: "Message must be at least 10 characters long" }),
+    .min(10, { message: 'Message must be at least 10 characters long' }),
 });
 
 type ContactFormData = z.infer<typeof ContactFormSchema>;
@@ -32,7 +32,7 @@ export async function sendEmail(formData: ContactFormData) {
     if (!validatedData.success) {
       return {
         success: false,
-        error: validatedData.error.errors.map((e) => e.message).join(", "),
+        error: validatedData.error.errors.map((e) => e.message).join(', '),
       };
     }
 
@@ -40,8 +40,8 @@ export async function sendEmail(formData: ContactFormData) {
 
     // Send email using Resend
     const { data, error } = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
-      to: "shahadathhossensajib732@gmail.com",
+      from: 'Contact Form <onboarding@resend.dev>',
+      to: 'shahadathhossensajib732@gmail.com',
       subject: `Contact Form of Portfolio: ${subject}`,
       react: await EmailTemplate({
         name,
@@ -52,10 +52,10 @@ export async function sendEmail(formData: ContactFormData) {
     });
 
     if (error) {
-      console.error("Error sending email:", error);
+      console.error('Error sending email:', error);
       return {
         success: false,
-        error: "Failed to send email. Please try again later.",
+        error: 'Failed to send email. Please try again later.',
       };
     }
 
@@ -64,10 +64,10 @@ export async function sendEmail(formData: ContactFormData) {
       data,
     };
   } catch (error) {
-    console.error("Error in sendEmail:", error);
+    console.error('Error in sendEmail:', error);
     return {
       success: false,
-      error: "An unexpected error occurred. Please try again later.",
+      error: 'An unexpected error occurred. Please try again later.',
     };
   }
 }

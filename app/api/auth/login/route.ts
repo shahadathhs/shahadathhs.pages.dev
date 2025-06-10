@@ -1,5 +1,5 @@
-import { type NextRequest, NextResponse } from "next/server";
-import { login } from "@/lib/auth-service";
+import { type NextRequest, NextResponse } from 'next/server';
+import { login } from '@/lib/auth-service';
 
 export async function POST(request: NextRequest) {
   try {
@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(user);
   } catch (error: unknown) {
-    console.error("Login error:", error);
-    return NextResponse.json({ error: "Login failed" }, { status: 401 });
+    console.error('Login error:', error);
+    return NextResponse.json({ error: 'Login failed' }, { status: 401 });
   }
 }

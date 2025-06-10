@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { MessageCircle, QrCode, Sparkles, Terminal, X } from "lucide-react";
+import { MessageCircle, QrCode, Sparkles, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -16,12 +16,12 @@ export default function FloatingActionMenu() {
       href: "/referral",
       color: "bg-blue-500 hover:bg-blue-600",
     },
-    {
-      icon: Terminal,
-      label: "Terminal",
-      href: "/terminal",
-      color: "bg-green-500 hover:bg-green-600",
-    },
+    // {
+    //   icon: Terminal,
+    //   label: "Terminal",
+    //   href: "/terminal",
+    //   color: "bg-green-500 hover:bg-green-600",
+    // },
     {
       icon: MessageCircle,
       label: "AI Chat",

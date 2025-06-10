@@ -1,4 +1,4 @@
-import mongoose, { Document } from "mongoose";
+import mongoose, { Document } from 'mongoose';
 
 // User Schema
 const UserSchema = new mongoose.Schema({
@@ -76,16 +76,16 @@ const BlogSchema = new mongoose.Schema(
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
     },
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 // Export models
 export const User =
-  mongoose?.models?.User || mongoose.model("User", UserSchema);
+  mongoose?.models?.User || mongoose.model('User', UserSchema);
 export const Blog =
-  mongoose?.models?.Blog || mongoose.model("Blog", BlogSchema);
+  mongoose?.models?.Blog || mongoose.model('Blog', BlogSchema);

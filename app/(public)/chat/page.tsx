@@ -82,7 +82,7 @@ export default function ChatBot() {
           <div className="text-center">
             <h1 className="text-3xl font-bold mb-2">SajibBot</h1>
             <p className="text-muted-foreground">
-              Ask me anything about Sajib`&apos;`s experience and projects
+              Ask me anything about Sajib&apos;s experience and projects
             </p>
           </div>
         </div>
@@ -102,7 +102,7 @@ export default function ChatBot() {
                   Welcome to SajibBot!
                 </h3>
                 <p className="text-muted-foreground max-w-md">
-                  I`&apos;`m here to help you learn about Sajib`&apos;`s background, skills,
+                  I&apos;m here to help you learn about Sajib&apos;s background, skills,
                   and projects. Feel free to ask me anything!
                 </p>
               </div>

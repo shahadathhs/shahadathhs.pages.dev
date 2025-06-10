@@ -1,9 +1,9 @@
-"use server";
+'use server';
 
-import { Blog, BlogDocument } from "@/lib/models";
-import { serialize, slugify } from "@/lib/utils";
-import dbConnect from "./dbConnect";
-import { FilterQuery } from "mongoose";
+import { Blog, BlogDocument } from '@/lib/models';
+import { serialize, slugify } from '@/lib/utils';
+import dbConnect from './dbConnect';
+import { FilterQuery } from 'mongoose';
 
 export async function getFeaturedBlogs() {
   await dbConnect();
@@ -14,7 +14,7 @@ export async function getFeaturedBlogs() {
   return blogs;
 }
 
-export async function getAllBlogs(query = "", category = "") {
+export async function getAllBlogs(query = '', category = '') {
   await dbConnect();
 
   //@ts-nocheck
@@ -22,8 +22,8 @@ export async function getAllBlogs(query = "", category = "") {
 
   if (query) {
     filter.$or = [
-      { title: { $regex: query, $options: "i" } },
-      { excerpt: { $regex: query, $options: "i" } },
+      { title: { $regex: query, $options: 'i' } },
+      { excerpt: { $regex: query, $options: 'i' } },
     ];
   }
 
@@ -85,7 +85,7 @@ export async function updateBlog(
     category: string;
     thumbnailUrl: string;
     content: string;
-  }
+  },
 ) {
   await dbConnect();
 
@@ -98,7 +98,7 @@ export async function updateBlog(
       slug,
       updatedAt: new Date(),
     },
-    { new: true }
+    { new: true },
   );
 
   return serialize(updatedBlog);
@@ -133,7 +133,7 @@ export async function getUserStats() {
 
   // Get categories count
   const categoriesResult = await Blog.aggregate([
-    { $group: { _id: "$category", count: { $sum: 1 } } },
+    { $group: { _id: '$category', count: { $sum: 1 } } },
     { $sort: { count: -1 } },
   ]);
 

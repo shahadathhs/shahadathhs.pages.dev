@@ -1,8 +1,8 @@
-import configuration from "@/config/configuration";
-import { systemPromptText } from "@/constant/systemPromptText";
-import { TMessage } from "@/types/chatMessage";
-import { GoogleGenAI } from "@google/genai";
-import { NextRequest, NextResponse } from "next/server";
+import configuration from '@/config/configuration';
+import { systemPromptText } from '@/constant/systemPromptText';
+import { TMessage } from '@/types/chatMessage';
+import { GoogleGenAI } from '@google/genai';
+import { NextRequest, NextResponse } from 'next/server';
 
 // * 0 Initialize gemini ai
 const ai = new GoogleGenAI({ apiKey: configuration.geminiAPIKey });
@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
   // * 1 Build chat session with dynamic history (including system prompt)
   const systemPrompt = {
     parts: [{ text: systemPromptText }],
-    role: "model",
+    role: 'model',
   };
 
   // * 2 Map user history to Gemini parts
@@ -21,13 +21,13 @@ export async function POST(req: NextRequest) {
     systemPrompt,
     ...history.map((msg: TMessage) => ({
       parts: [{ text: msg.text }],
-      role: msg.role === "user" ? "user" : "model",
+      role: msg.role === 'user' ? 'user' : 'model',
     })),
   ];
 
   // * 3 Create chat with full history
   const chat = await ai.chats.create({
-    model: "gemini-2.0-flash",
+    model: 'gemini-2.0-flash',
     config: { temperature: 0.6, maxOutputTokens: 1024 },
     history: geminiHistory,
   });
