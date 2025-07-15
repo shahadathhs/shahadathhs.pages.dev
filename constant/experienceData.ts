@@ -33,7 +33,7 @@ export const experienceData: TimelineEntry[] = [
     ],
   },
   {
-    title: 'Sep 2024 – Oct 2024',
+    title: 'Aug 2024 – Oct 2024',
     company: 'Monster Studio',
     location: 'Chattogram, Bangladesh · On-site',
     designation: 'Quality Assurance Intern',
@@ -43,14 +43,14 @@ export const experienceData: TimelineEntry[] = [
       'Contributed to improving overall code quality and reliability in a full-stack testing environment.',
     ],
   },
-  {
-    title: 'Aug 2024',
-    company: 'Monster Studio',
-    location: 'Chattogram, Bangladesh · On-site',
-    designation: 'Trainee Frontend Developer',
-    responsibilities: [
-      'Gained practical experience with React.js, Tailwind CSS, and modern frontend workflows.',
-      'Participated in UI implementation, responsive design, and component architecture basics.',
-    ],
-  },
+  // {
+  //   title: 'Aug 2024',
+  //   company: 'Monster Studio',
+  //   location: 'Chattogram, Bangladesh · On-site',
+  //   designation: 'Trainee Frontend Developer',
+  //   responsibilities: [
+  //     'Gained practical experience with React.js, Tailwind CSS, and modern frontend workflows.',
+  //     'Participated in UI implementation, responsive design, and component architecture basics.',
+  //   ],
+  // },
 ];
