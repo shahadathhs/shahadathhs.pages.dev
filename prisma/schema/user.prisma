@@ -1,14 +1,18 @@
 model User {
-    id        String    @id @default(uuid())
-    name      String
-    email     String    @unique
-    password  String
-    role      USER_ROLE @default(USER)
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
+  id String @id @default(uuid())
+
+  name     String
+  email    String    @unique
+  password String
+  role     USER_ROLE @default(USER)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@map("users")
 }
 
 enum USER_ROLE {
-    USER
-    ADMIN
+  USER
+  ADMIN
 }
