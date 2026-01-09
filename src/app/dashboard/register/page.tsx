@@ -24,7 +24,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { registerUser } from '@/lib/auth-service';
+import { registerUser } from '@/services/auth-service';
 import { toast } from 'sonner';
 
 const formSchema = z

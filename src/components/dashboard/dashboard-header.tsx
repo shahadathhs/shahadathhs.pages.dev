@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth } from '@/lib/auth-context';
+import { useAuth } from '@/context/auth-context';
 import { LogOut, Menu } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';

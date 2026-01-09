@@ -1,10 +1,9 @@
 'use server';
 
 import configuration from '@/config/configuration';
-import { User } from '@/lib/models';
+import prisma from '@/db';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import dbConnect from './dbConnect';
 
 export async function registerUser({
   name,
@@ -15,10 +14,8 @@ export async function registerUser({
   email: string;
   password: string;
 }) {
-  await dbConnect();
-
   // Check if user already exists
-  const existingUser = await User.findOne({ email });
+  const existingUser = await prisma.user.findUnique({ where: { email } });
   if (existingUser) {
     throw new Error('User already exists');
   }
@@ -28,26 +25,24 @@ export async function registerUser({
   const hashedPassword = await bcrypt.hash(password, salt);
 
   // Create new user
-  const user = new User({
-    name,
-    email,
-    password: hashedPassword,
+  const user = await prisma.user.create({
+    data: {
+      name,
+      email,
+      password: hashedPassword,
+    },
   });
 
-  await user.save();
-
   return {
-    _id: user._id,
+    id: user.id,
     name: user.name,
     email: user.email,
   };
 }
 
 export async function login(email: string, password: string) {
-  await dbConnect();
-
   // Find user
-  const user = await User.findOne({ email });
+  const user = await prisma.user.findUnique({ where: { email } });
   if (!user) {
     throw new Error('Invalid credentials');
   }
@@ -59,12 +54,12 @@ export async function login(email: string, password: string) {
   }
 
   // Generate JWT token
-  const token = jwt.sign({ id: user._id }, configuration?.jwtSecret as string, {
+  const token = jwt.sign({ id: user.id }, configuration?.jwtSecret as string, {
     expiresIn: '7d',
   });
 
   return {
-    _id: user._id,
+    id: user.id,
     name: user.name,
     email: user.email,
     token,

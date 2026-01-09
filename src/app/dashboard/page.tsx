@@ -5,12 +5,12 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { getUserStats } from '@/lib/blog-service';
+import { getDashboardStats } from '@/services/blog-service';
 import { FileText, Eye, FolderTree, Clock } from 'lucide-react';
 import { nanoid } from 'nanoid';
 
 export default async function DashboardPage() {
-  const stats = await getUserStats();
+  const stats = await getDashboardStats();
 
   return (
     <div className="space-y-6">

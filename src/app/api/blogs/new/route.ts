@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { createBlog } from '@/lib/blog-service';
+import { createBlog } from '@/services/blog-service';
 
 export async function POST(request: NextRequest) {
   try {

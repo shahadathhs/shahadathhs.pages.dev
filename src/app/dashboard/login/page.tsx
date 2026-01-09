@@ -23,7 +23,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth } from '@/lib/auth-context';
+import { useAuth } from '@/context/auth-context';
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email address' }),

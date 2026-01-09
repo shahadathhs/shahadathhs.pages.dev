@@ -1,10 +1,11 @@
 'use server';
 
-import db from '@/lib/db';
+import prisma from '@/db';
 import { slugify } from '@/lib/utils';
+import { Prisma } from 'prisma';
 
 export async function getFeaturedBlogs() {
-  const blogs = await db.blog.findMany({
+  const blogs = await prisma.blog.findMany({
     orderBy: { createdAt: 'desc' },
     take: 3,
   });
@@ -12,7 +13,7 @@ export async function getFeaturedBlogs() {
 }
 
 export async function getAllBlogs(query = '', category = '') {
-  const where: any = {};
+  const where: Prisma.BlogWhereInput = {};
 
   if (query) {
     where.OR = [
@@ -25,7 +26,7 @@ export async function getAllBlogs(query = '', category = '') {
     where.category = category;
   }
 
-  const blogs = await db.blog.findMany({
+  const blogs = await prisma.blog.findMany({
     where,
     orderBy: { createdAt: 'desc' },
   });
@@ -34,14 +35,14 @@ export async function getAllBlogs(query = '', category = '') {
 }
 
 export async function getBlogBySlug(slug: string) {
-  const blog = await db.blog.findUnique({
+  const blog = await prisma.blog.findUnique({
     where: { slug },
   });
   return blog;
 }
 
 export async function getBlogById(id: string) {
-  const blog = await db.blog.findUnique({
+  const blog = await prisma.blog.findUnique({
     where: { id },
   });
   return blog;
@@ -57,7 +58,7 @@ export async function createBlog(blogData: {
   const slug = slugify(blogData.title);
   // Note: Handle slug uniqueness in real app (suffix if exists)
 
-  const blog = await db.blog.create({
+  const blog = await prisma.blog.create({
     data: {
       ...blogData,
       slug,
@@ -79,7 +80,7 @@ export async function updateBlog(
 ) {
   const slug = slugify(blogData.title);
 
-  const updatedBlog = await db.blog.update({
+  const updatedBlog = await prisma.blog.update({
     where: { id },
     data: {
       ...blogData,
@@ -91,22 +92,22 @@ export async function updateBlog(
 }
 
 export async function deleteBlog(id: string) {
-  await db.blog.delete({
+  await prisma.blog.delete({
     where: { id },
   });
   return { success: true };
 }
 
-export async function getUserStats() {
+export async function getDashboardStats() {
   // Get total posts
-  const totalPosts = await db.blog.count();
+  const totalPosts = await prisma.blog.count();
 
   // Get posts created this month
   const startOfMonth = new Date();
   startOfMonth.setDate(1);
   startOfMonth.setHours(0, 0, 0, 0);
 
-  const postsThisMonth = await db.blog.count({
+  const postsThisMonth = await prisma.blog.count({
     where: {
       createdAt: { gte: startOfMonth },
     },
@@ -118,7 +119,7 @@ export async function getUserStats() {
 
   // Get categories count
   // Prisma groupBy requires knowing fields upfront, simple group by:
-  const categoriesResult = await db.blog.groupBy({
+  const categoriesResult = await prisma.blog.groupBy({
     by: ['category'],
     _count: {
       category: true,
@@ -133,8 +134,8 @@ export async function getUserStats() {
   const categories = categoriesResult.length;
 
   // Get popular categories
-  const popularCategories = categoriesResult.slice(0, 5).map((cat) => ({
-    name: cat.category || 'Uncategorized',
+  const popularCategories = categoriesResult.slice(0, 5).map((cat: any) => ({
+    name: (cat.category as string) || 'Uncategorized',
     count: cat._count.category,
   }));
 
@@ -142,7 +143,7 @@ export async function getUserStats() {
   const avgReadTime = Math.floor(Math.random() * 8) + 3;
 
   // Get recent posts
-  const recentPosts = await db.blog.findMany({
+  const recentPosts = await prisma.blog.findMany({
     orderBy: { createdAt: 'desc' },
     take: 5,
   });

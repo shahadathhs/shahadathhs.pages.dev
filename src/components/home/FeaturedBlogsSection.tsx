@@ -9,8 +9,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { getFeaturedBlogs } from '@/lib/blog-service';
+import { getFeaturedBlogs } from '@/services/blog-service';
 import { nanoid } from 'nanoid';
+import { Blog } from 'prisma';
 
 export default async function FeaturedBlogsSection() {
   const blogs = await getFeaturedBlogs();
@@ -36,7 +37,7 @@ export default async function FeaturedBlogsSection() {
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {blogs.length > 0 ? (
-          blogs.map((blog) => (
+          blogs.map((blog: Blog) => (
             <Card key={nanoid()} className="flex flex-col overflow-hidden pt-0">
               <div className="relative h-48 w-full">
                 <Image

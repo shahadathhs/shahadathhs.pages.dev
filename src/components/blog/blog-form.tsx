@@ -26,7 +26,7 @@ import {
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { TextEditor } from '@/components/text-editor';
-import { createBlog, updateBlog } from '@/lib/blog-service';
+import { createBlog, updateBlog } from '@/services/blog-service';
 import { categories } from '@/constant/blogs';
 import { toast } from 'sonner';
 
@@ -46,7 +46,7 @@ type BlogFormValues = z.infer<typeof formSchema>;
 
 interface BlogFormProps {
   blog?: {
-    _id: string;
+    id: string;
     title: string;
     excerpt: string;
     category: string;
@@ -82,7 +82,7 @@ export function BlogForm({ blog }: BlogFormProps) {
     setIsSubmitting(true);
     try {
       if (blog) {
-        await updateBlog(blog._id, values);
+        await updateBlog(blog.id, values);
         toast('Blog updated', {
           description: 'Your blog post has been updated successfully',
         });

@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { getBlogById, updateBlog, deleteBlog } from '@/lib/blog-service';
+import { getBlogById, updateBlog, deleteBlog } from '@/services/blog-service';
 
 export async function GET(
   request: NextRequest,

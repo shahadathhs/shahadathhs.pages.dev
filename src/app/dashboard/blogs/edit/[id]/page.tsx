@@ -1,6 +1,5 @@
 import { BlogForm } from '@/components/blog/blog-form';
-import { getBlogById } from '@/lib/blog-service';
-import { Blog } from '@/lib/models';
+import { getBlogById } from '@/services/blog-service';
 import { notFound } from 'next/navigation';
 
 export default async function EditBlogPage({
@@ -9,7 +8,7 @@ export default async function EditBlogPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const blog = (await getBlogById(id)) as unknown as Blog & { _id: string };
+  const blog = await getBlogById(id);
 
   if (!blog) notFound();
 

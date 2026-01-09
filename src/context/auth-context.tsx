@@ -4,12 +4,12 @@ import type React from 'react';
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import {
-  login as loginService,
-  logout as logoutService,
-} from '@/lib/auth-service';
+  login as apiLogin,
+  logout as apiLogout,
+} from '@/services/auth-service';
 
 interface User {
-  _id: string;
+  id: string;
   name: string;
   email: string;
 }
@@ -47,7 +47,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (email: string, password: string) => {
     try {
-      const userData = await loginService(email, password);
+      const userData = await apiLogin(email, password);
       localStorage.setItem('user', JSON.stringify(userData));
       setUser(userData);
     } catch (error) {
@@ -57,7 +57,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = async () => {
     try {
-      await logoutService();
+      await apiLogout();
       localStorage.removeItem('user');
       setUser(null);
     } catch (error) {

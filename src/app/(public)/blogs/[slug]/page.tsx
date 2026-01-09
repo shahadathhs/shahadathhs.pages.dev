@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { getBlogBySlug } from '@/lib/blog-service';
-import { Blog } from '@/lib/models';
+import { getBlogBySlug } from '@/services/blog-service';
 import { ArrowLeft } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,7 +11,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const blog = (await getBlogBySlug(slug)) as unknown as Blog;
+  const blog = await getBlogBySlug(slug);
 
   if (!blog) {
     return {
@@ -33,7 +32,7 @@ export default async function BlogPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const blog = (await getBlogBySlug(slug)) as unknown as Blog;
+  const blog = await getBlogBySlug(slug);
 
   if (!blog) notFound();
 

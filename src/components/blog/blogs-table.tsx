@@ -30,10 +30,10 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
-import { useBlogs } from '@/lib/use-blogs';
-import { deleteBlog } from '@/lib/blog-service';
+import { useBlogs } from '@/hooks/use-blogs';
+import { deleteBlog } from '@/services/blog-service';
 import { toast } from 'sonner';
-import { Blog } from '@/lib/models';
+import { Blog } from 'prisma';
 
 export function BlogsTable() {
   const { blogs, isLoading, mutate } = useBlogs();
@@ -99,8 +99,8 @@ export function BlogsTable() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {blogs.map((blog: Blog & { _id: string }) => (
-              <TableRow key={blog._id}>
+            {blogs.map((blog: Blog) => (
+              <TableRow key={blog.id}>
                 <TableCell className="font-medium">{blog.title}</TableCell>
                 <TableCell>{blog.category}</TableCell>
                 <TableCell>
@@ -129,7 +129,7 @@ export function BlogsTable() {
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
-                        <Link href={`/dashboard/blogs/edit/${blog._id}`}>
+                        <Link href={`/dashboard/blogs/edit/${blog.id}`}>
                           <Edit className="mr-2 h-4 w-4" />
                           Edit
                         </Link>
@@ -137,7 +137,7 @@ export function BlogsTable() {
                       <DropdownMenuItem
                         className="text-destructive focus:text-destructive"
                         onClick={() => {
-                          setBlogToDelete(blog._id);
+                          setBlogToDelete(blog.id);
                           setDeleteDialogOpen(true);
                         }}
                       >

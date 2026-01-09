@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import db from '@/lib/db';
+import prisma from '@/db';
 import { hashPassword } from '@/lib/auth';
 
 export async function POST(request: NextRequest) {
@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const existingUser = await db.user.findUnique({
+    const existingUser = await prisma.user.findUnique({
       where: { email },
     });
 
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
 
     const hashedPassword = await hashPassword(password);
 
-    const user = await db.user.create({
+    const user = await prisma.user.create({
       data: {
         name,
         email,
