@@ -7,9 +7,12 @@ import Link from 'next/link';
 import { useState } from 'react';
 import SocialLinks from './SocialLinks';
 
+import { contactEmail } from '@/constant/contactInfo';
+import { heroData } from '@/constant/heroData';
+
 export default function Footer() {
   const [copied, setCopied] = useState(false);
-  const email = 'shahadathhossensajib732@gmail.com';
+  const email = contactEmail;
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(email);
@@ -35,12 +38,10 @@ export default function Footer() {
           <div className="space-y-4 max-w-md">
             {/* Logo and Description */}
             <Link href="/" className="font-bold italic text-xl">
-              Shahadath Hossen Sajib
+              {heroData.secondLine}
             </Link>
             <p className="text-sm text-muted-foreground mt-4">
-              Backend developer passionate about building scalable, efficient,
-              and secure server-side applications with a focus on robust
-              architecture and clean code.
+              {heroData.footerDescription}
             </p>
 
             {/* Social Links */}
@@ -91,7 +92,7 @@ export default function Footer() {
                 <Button asChild variant="outline">
                   <Link
                     target="_blank"
-                    href="https://drive.google.com/file/d/1dtZCEgZyof-qrUreeVpXDlOovosegpuf/view"
+                    href={heroData.resumeLink}
                     rel="noopener noreferrer"
                   >
                     <FileText className="mr-2 h-4 w-4" />

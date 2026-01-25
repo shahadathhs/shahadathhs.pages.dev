@@ -6,9 +6,11 @@ import { Typewriter } from 'react-simple-typewriter';
 import SocialLinks from '../shared/SocialLinks';
 import { Button } from '../ui/button';
 
+import { heroData } from '@/constant/heroData';
+
 export default function HeroSection() {
-  const firstLine = "Hey there, I'm".split(' ');
-  const secondLine = 'Shahadath Hossen Sajib'.split(' ');
+  const firstLine = heroData.firstLine.split(' ');
+  const secondLine = heroData.secondLine.split(' ');
   const stagger = 0.2; // seconds between each word
   const duration = 0.6; // each word’s animation duration
   const firstTotal = firstLine.length * stagger + duration;
@@ -88,10 +90,7 @@ export default function HeroSection() {
           className="relative z-10 mx-auto max-w-xl py-4 text-center text-xl md:text-3xl font-normal text-slate-700 dark:text-slate-300"
         >
           <Typewriter
-            words={[
-              'Backend Developer (Node.js)',
-              'Aspiring Software Engineer',
-            ]}
+            words={heroData.typewriterWords}
             loop={Infinity}
             cursor
             typeSpeed={100}
@@ -144,7 +143,7 @@ export default function HeroSection() {
           >
             <Link
               target="_blank"
-              href="https://drive.google.com/file/d/1dtZCEgZyof-qrUreeVpXDlOovosegpuf/view"
+              href={heroData.resumeLink}
               rel="noopener noreferrer"
             >
               View My Resume

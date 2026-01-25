@@ -9,9 +9,11 @@ import { TypingAnimation } from '../magicui/typing-animation';
 
 import { BorderBeam } from '../magicui/border-beam';
 
+import { contactEmail } from '@/constant/contactInfo';
+
 export default function ContactSection() {
   const [copied, setCopied] = useState(false);
-  const email = 'shahadathhossensajib732@gmail.com';
+  const email = contactEmail;
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(email);

@@ -1,15 +1,38 @@
-export const words = [
+export const skills = [
+  { title: 'Languages', description: ['JavaScript', 'TypeScript'] },
+  { title: 'Backend', description: ['Node.js', 'Express', 'Nest.js'] },
   {
-    text: 'Know',
+    title: 'Databases',
+    description: ['MongoDB', 'PostgreSQL'],
   },
   {
-    text: 'about',
+    title: 'ORMs & ODMs',
+    description: ['Prisma', 'Drizzle', 'Mongoose'],
+  },
+  { title: 'Authentication', description: ['JWT', 'OAuth 2'] },
+  { title: 'API Testing', description: ['Jest', 'Supertest'] },
+  {
+    title: 'API Documentation',
+    description: ['Postman', 'Swagger', 'OpenAPI'],
   },
   {
-    text: 'my',
+    title: 'VCS & CI/CD',
+    description: ['Git', 'GitHub', 'GitHub Actions'],
   },
   {
-    text: 'SKILLS',
-    className: 'text-blue-500 dark:text-blue-500',
+    title: 'Containerization',
+    description: ['Docker'],
+  },
+  {
+    title: 'Package Manager',
+    description: ['npm', 'pnpm'],
+  },
+  {
+    title: 'Monorepo Tools',
+    description: ['Nx', 'Turborepo'],
+  },
+  {
+    title: 'Dev Tools',
+    description: ['Prettier', 'Eslint', 'Warp', 'VS Code'],
   },
 ];

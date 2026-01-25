@@ -15,12 +15,7 @@ import { BorderBeam } from '../magicui/border-beam';
 
 import ProjectSkeleton from '../skeleton/ProjectSkeleton';
 
-const PINNED_REPOS = [
-  'barisathi',
-  'bike-shop',
-  'generate-password',
-  'turborepo-starter',
-];
+import { PINNED_REPOS } from '@/constant/projectConfig';
 
 export default function ProjectSection() {
   const [repos, setRepos] = useState<GithubRepo[]>([]);

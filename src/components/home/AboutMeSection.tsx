@@ -1,6 +1,6 @@
 'use client';
 
-import { Database, Server, ShieldCheck, User } from 'lucide-react';
+import { aboutMeBio, features } from '@/constant/aboutMe';
 import { motion } from 'motion/react';
 import { BorderBeam } from '../magicui/border-beam';
 import { WarpBackground } from '../magicui/warp-background';
@@ -11,32 +11,6 @@ import {
   CardHeader,
   CardTitle,
 } from '../ui/card';
-
-const features = [
-  {
-    title: 'API Design',
-    description: 'Creating RESTful APIs for seamless data exchange.',
-    icon: Server,
-  },
-  {
-    title: 'Robust Databases',
-    description:
-      'Crafting optimized schemas and queries for performant data storage.',
-    icon: Database,
-  },
-  {
-    title: 'Security First',
-    description:
-      'Implementing authentication, authorization, and secure API practices.',
-    icon: ShieldCheck,
-  },
-  {
-    title: 'Collaborative Excellence',
-    description:
-      'Thriving in team environments with clean code and peer reviews.',
-    icon: User,
-  },
-];
 
 export default function AboutMeSection() {
   return (
@@ -52,20 +26,7 @@ export default function AboutMeSection() {
               About Me
             </h2>
             <p className="mt-2 text-neutral-700 dark:text-neutral-300 text-base max-w-4xl mx-auto">
-              Hi, I&apos;m Shahadath Hossen Sajib — a backend developer
-              passionate about building clean, scalable, and maintainable
-              systems. I currently work at a service-based company where I
-              develop APIs and backend features using NestJS, Drizzle ORM,
-              Prisma, and PostgreSQL. Starting my journey with the MERN stack, I
-              gradually found my interest in the backend ecosystem — working
-              with databases, designing APIs, and focusing on performance and
-              clean architecture. Outside of work, I&apos;m actively learning
-              advanced NestJS patterns, PostgreSQL internals, and data
-              structures & algorithms to sharpen my problem-solving and system
-              design skills. I also love working on side projects that challenge
-              me and help me grow as a developer. I&apos;m always eager to
-              explore new technologies, improve my craft, and collaborate on
-              meaningful products.
+              {aboutMeBio}
             </p>
           </div>
 

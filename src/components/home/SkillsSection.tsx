@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@/lib/utils';
 import {
   IconCone2,
@@ -13,49 +15,9 @@ import {
 import { BorderBeam } from '../magicui/border-beam';
 import { Badge } from '../ui/badge';
 
-export default function SkillsSection() {
-  const skills: Array<{
-    title: string;
-    description: string[];
-  }> = [
-    { title: 'Languages', description: ['JavaScript', 'TypeScript'] },
-    { title: 'Backend', description: ['Node.js', 'Express', 'Nest.js'] },
-    {
-      title: 'Databases',
-      description: ['MongoDB', 'PostgreSQL'],
-    },
-    {
-      title: 'ORMs & ODMs',
-      description: ['Prisma', 'Drizzle', 'Mongoose'],
-    },
-    { title: 'Authentication', description: ['JWT', 'OAuth 2'] },
-    { title: 'API Testing', description: ['Jest', 'Supertest'] },
-    {
-      title: 'API Documentation',
-      description: ['Postman', 'Swagger', 'OpenAPI'],
-    },
-    {
-      title: 'VCS & CI/CD',
-      description: ['Git', 'GitHub', 'GitHub Actions'],
-    },
-    {
-      title: 'Containerization',
-      description: ['Docker'],
-    },
-    {
-      title: 'Package Manager',
-      description: ['npm', 'pnpm'],
-    },
-    {
-      title: 'Monorepo Tools',
-      description: ['Nx', 'Turborepo'],
-    },
-    {
-      title: 'Dev Tools',
-      description: ['Prettier', 'Eslint', 'Warp', 'VS Code'],
-    },
-  ];
+import { skills } from '@/constant/skillsData';
 
+export default function SkillsSection() {
   const iconMap: Record<string, React.ReactNode> = {
     Languages: <IconLanguage className="h-8 w-8" />,
     Backend: <IconServer className="h-8 w-8" />,
