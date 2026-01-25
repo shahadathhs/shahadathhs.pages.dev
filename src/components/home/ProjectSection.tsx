@@ -3,9 +3,20 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { fetchGithubRepos, GithubRepo } from '@/services/github-service';
+import {
+  fetchGithubRepos,
+  fetchMultipleRepos,
+  GithubRepo,
+} from '@/services/github-service';
 import ProjectCard from '../card/ProjectCard';
 import { motion } from 'motion/react';
+
+const PINNED_REPOS = [
+  'barisathi',
+  'bike-shop',
+  'generate-password',
+  'turborepo-starter',
+];
 
 export default function ProjectSection() {
   const [repos, setRepos] = useState<GithubRepo[]>([]);
@@ -13,13 +24,19 @@ export default function ProjectSection() {
 
   useEffect(() => {
     const loadRepos = async () => {
-      const data = await fetchGithubRepos('shahadathhs');
-      // Sort by stars descending and take top 5
-      setRepos(
-        data
-          .sort((a, b) => b.stargazers_count - a.stargazers_count)
-          .slice(0, 5),
-      );
+      const data = await fetchMultipleRepos('shahadathhs', PINNED_REPOS);
+
+      // If no pinned repos found (fallback), fetch latest
+      if (data.length === 0) {
+        const allRepos = await fetchGithubRepos('shahadathhs');
+        setRepos(
+          allRepos
+            .sort((a, b) => b.stargazers_count - a.stargazers_count)
+            .slice(0, 5),
+        );
+      } else {
+        setRepos(data);
+      }
       setLoading(false);
     };
     loadRepos();

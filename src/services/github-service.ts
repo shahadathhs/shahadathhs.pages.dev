@@ -51,3 +51,16 @@ export const fetchRepoDetails = async (
     return null;
   }
 };
+export const fetchMultipleRepos = async (
+  owner: string,
+  repoNames: string[],
+): Promise<GithubRepo[]> => {
+  try {
+    const promises = repoNames.map((repo) => fetchRepoDetails(owner, repo));
+    const results = await Promise.all(promises);
+    return results.filter((repo): repo is GithubRepo => repo !== null);
+  } catch (error) {
+    console.error(`Error fetching multiple repos for ${owner}:`, error);
+    return [];
+  }
+};
