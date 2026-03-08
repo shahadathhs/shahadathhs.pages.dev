@@ -21,29 +21,29 @@ export default function HeroSection() {
       className="relative mx-auto my-10 flex flex-col items-center justify-center"
     >
       {/* top */}
-      <div className="absolute inset-x-0 top-0 h-px w-full bg-neutral-200/80 dark:bg-neutral-800/80">
-        <div className="absolute mx-auto h-px w-40 bg-gradient-to-r from-transparent via-stone-500 to-transparent" />
-        <div className="absolute right-0 mx-auto h-px w-40 bg-gradient-to-r from-transparent via-stone-500 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px w-full bg-border/50 dark:bg-border">
+        <div className="absolute mx-auto h-px w-40 bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
+        <div className="absolute right-0 mx-auto h-px w-40 bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
       </div>
 
       {/* left */}
-      <div className="absolute inset-y-0 left-0 h-full w-px bg-neutral-200/80 dark:bg-neutral-800/80">
-        <div className="absolute top-0 h-60 w-px bg-gradient-to-b from-transparent via-stone-500 to-transparent" />
+      <div className="absolute inset-y-0 left-0 h-full w-px bg-border/50 dark:bg-border">
+        <div className="absolute top-0 h-60 w-px bg-gradient-to-b from-transparent via-accent/40 to-transparent" />
       </div>
 
       {/* bottom */}
-      <div className="absolute inset-x-0 bottom-0 h-px w-full bg-neutral-200/80 dark:bg-neutral-800/80">
-        <div className="absolute mx-auto h-px w-full bg-gradient-to-r from-transparent via-stone-500 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-px w-full bg-border/50 dark:bg-border">
+        <div className="absolute mx-auto h-px w-full bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
       </div>
 
       {/* right */}
-      <div className="absolute inset-y-0 right-0 h-full w-px bg-neutral-200/80 dark:bg-neutral-800/80">
-        <div className="absolute h-60 w-px bg-gradient-to-b from-transparent via-stone-500 to-transparent" />
+      <div className="absolute inset-y-0 right-0 h-full w-px bg-border/50 dark:bg-border">
+        <div className="absolute h-60 w-px bg-gradient-to-b from-transparent via-accent/40 to-transparent" />
       </div>
 
       {/* content */}
       <div className="px-4 py-10 md:py-20">
-        <h1 className="relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-slate-700 md:text-4xl lg:text-6xl dark:text-slate-300">
+        <h1 className="relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-foreground md:text-4xl lg:text-6xl">
           {firstLine.map((word, i) => (
             <motion.span
               key={`f-${i}`}
@@ -87,7 +87,7 @@ export default function HeroSection() {
             duration: 0.3,
             delay: 0.8,
           }}
-          className="relative z-10 mx-auto max-w-xl py-4 text-center text-xl md:text-3xl font-normal text-slate-700 dark:text-slate-300"
+          className="relative z-10 mx-auto max-w-xl py-4 text-center text-xl md:text-3xl font-normal text-foreground/80"
         >
           <Typewriter
             words={heroData.typewriterWords}
@@ -113,10 +113,10 @@ export default function HeroSection() {
           }}
           className="relative z-10 mt-4 flex flex-wrap items-center justify-center gap-4"
         >
-          <button className="w-60 transform rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium dark:text-white text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black  dark:hover:bg-gray-900">
+          <button className="w-60 transform rounded-lg border border-border bg-card text-foreground px-6 py-2 font-medium transition-all duration-300 hover:-translate-y-0.5 hover:bg-card/80 hover:border-accent/50">
             <Link href="#projects">See My Work</Link>
           </button>
-          <button className="w-60 transform rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium dark:text-white text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black  dark:hover:bg-gray-900">
+          <button className="w-60 transform rounded-lg border border-border bg-card text-foreground px-6 py-2 font-medium transition-all duration-300 hover:-translate-y-0.5 hover:bg-card/80 hover:border-accent/50">
             <Link href="#contact">Contact Me</Link>
           </button>
         </motion.div>

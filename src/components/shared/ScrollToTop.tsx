@@ -43,8 +43,8 @@ export default function ScrollToTop() {
             onClick={scrollToTop}
             size="icon"
             className={cn(
-              'rounded-full h-12 w-12 shadow-lg border-2 border-primary/20',
-              'bg-white dark:bg-neutral-900 text-primary hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-300',
+              'rounded-full h-12 w-12 shadow-lg border-2 border-accent/20',
+              'bg-card text-accent hover:bg-card/80 hover:border-accent/40 transition-all duration-300',
             )}
             aria-label="Scroll to top"
           >

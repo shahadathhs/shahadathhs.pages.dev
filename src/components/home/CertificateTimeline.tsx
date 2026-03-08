@@ -14,15 +14,15 @@ export default function CertificateTimeline() {
       id="certifications"
       className="relative w-full mt-10 border rounded overflow-clip scroll-mt-24"
     >
-      <section className="w-full bg-white dark:bg-neutral-950 py-16 px-4 md:px-8 lg:px-16">
+      <section className="w-full bg-background py-16 px-4 md:px-8 lg:px-16">
         <div className="max-w-7xl mx-auto">
           {/* Header Block */}
           <div className="flex flex-col max-w-4xl mb-16">
             <div>
-              <h2 className="text-4xl mb-4 font-bold dark:text-white text-black">
+              <h2 className="text-4xl mb-4 font-bold text-foreground">
                 Certifications
               </h2>
-              <p className="mt-2 text-neutral-700 dark:text-neutral-300  text-base max-w-2xl">
+              <p className="mt-2 text-foreground/70 text-base max-w-2xl">
                 A collection of professional certifications and courses that
                 have helped me deepen my knowledge and master new technologies.
               </p>
@@ -33,13 +33,13 @@ export default function CertificateTimeline() {
             {certificates.map((certificate) => (
               <div
                 key={certificate.id}
-                className="relative flex gap-4 pb-8 border-l border-muted pl-6 last:border-l-transparent last:pb-0"
+                className="relative flex gap-4 pb-8 border-l border-border pl-6 last:border-l-transparent last:pb-0"
               >
-                <div className="absolute left-[-12px] h-6 w-6 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                <div className="absolute left-[-12px] h-6 w-6 rounded-full bg-gradient-to-r from-accent to-accent/60 flex items-center justify-center">
                   <div className="h-4 w-4 rounded-full bg-background"></div>
                 </div>
 
-                <div className="flex-1 space-y-2 bg-card rounded-lg border p-4 shadow-sm hover:shadow-md transition-shadow duration-200 border-l-4 border-l-primary/40">
+                <div className="flex-1 space-y-2 bg-card rounded-lg border p-4 shadow-sm hover:shadow-md transition-shadow duration-200 border-l-4 border-l-accent/40">
                   <div className="flex justify-between items-start">
                     <div className="flex gap-3">
                       <div className="h-12 w-12 rounded bg-muted flex items-center justify-center overflow-hidden">

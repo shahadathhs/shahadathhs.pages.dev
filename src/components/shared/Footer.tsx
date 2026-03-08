@@ -29,18 +29,18 @@ export default function Footer() {
 
   return (
     <footer className="relative">
-      <div className="absolute inset-x-0 -top-[1px] h-px w-full bg-neutral-200/80 dark:bg-neutral-800/80">
-        <div className="absolute mx-auto h-px w-full bg-gradient-to-r from-transparent via-stone-500 to-transparent" />
+      <div className="absolute inset-x-0 -top-[1px] h-px w-full bg-border">
+        <div className="absolute mx-auto h-px w-full bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
       </div>
       <div className="container mx-auto py-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
           {/* info */}
           <div className="space-y-4 max-w-md">
             {/* Logo and Description */}
-            <Link href="/" className="font-bold italic text-xl">
+            <Link href="/" className="font-bold text-xl text-foreground">
               {heroData.secondLine}
             </Link>
-            <p className="text-sm text-muted-foreground mt-4">
+            <p className="text-sm text-foreground/70 mt-4">
               {heroData.footerDescription}
             </p>
 
@@ -49,19 +49,19 @@ export default function Footer() {
 
             {/* email */}
             <div className="flex items-center space-x-2">
-              <p className="text-sm text-muted-foreground truncate max-w-[180px] xl:max-w-[300px]">
+              <p className="text-sm text-foreground/70 truncate max-w-[180px] xl:max-w-[300px]">
                 {email}
               </p>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={handleCopyEmail}
-                className="h-8 w-8"
+                className="h-8 w-8 hover:bg-accent/10"
               >
                 {copied ? (
-                  <Check className="h-4 w-4" />
+                  <Check className="h-4 w-4 text-green-600" />
                 ) : (
-                  <Copy className="h-4 w-4" />
+                  <Copy className="h-4 w-4 text-foreground/60" />
                 )}
                 <span className="sr-only">Copy email</span>
               </Button>
@@ -70,13 +70,13 @@ export default function Footer() {
           <div className="flex flex-row justify-between gap-8">
             {/* Quick Links */}
             <div className="space-y-3">
-              <h3 className="text-sm font-medium">Quick Links</h3>
+              <h3 className="text-sm font-medium text-foreground">Quick Links</h3>
               <ul className="grid grid-cols-1">
                 {quickLinks.map((link) => (
                   <li key={link.title}>
                     <Link
                       href={link.link}
-                      className="text-muted-foreground underline text-sm hover:text-primary transition-colors"
+                      className="text-foreground/70 underline text-sm hover:text-accent transition-colors"
                     >
                       {link.title}
                     </Link>

@@ -22,10 +22,10 @@ export default function AboutMeSection() {
         <section className="w-full max-w-7xl mx-auto my-10 md:my-0">
           {/* Header Block */}
           <div className="mb-10 flex flex-col">
-            <h2 className="text-4xl mb-4 font-bold dark:text-white text-black">
+            <h2 className="text-4xl mb-4 font-bold text-foreground">
               About Me
             </h2>
-            <p className="mt-2 text-neutral-700 dark:text-neutral-300 text-justify text-base">
+            <p className="mt-2 text-foreground/70 text-justify text-base">
               {aboutMeBio}
             </p>
           </div>
@@ -55,15 +55,15 @@ export default function AboutMeSection() {
                       },
                     }}
                   >
-                    <Card className="hover:shadow-xl transform hover:-translate-y-1 transition bg-white dark:bg-neutral-900 border-neutral-100 dark:border-neutral-800">
+                    <Card className="hover:shadow-xl transform hover:-translate-y-1 transition bg-card border-border hover:border-accent/50">
                       <CardHeader className="flex flex-row items-center gap-4">
-                        <feature.icon className="w-6 h-6 text-blue-500" />
-                        <CardTitle className="text-lg font-semibold">
+                        <feature.icon className="w-6 h-6 text-accent" />
+                        <CardTitle className="text-lg font-semibold text-foreground">
                           {feature.title}
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <CardDescription>{feature.description}</CardDescription>
+                        <CardDescription className="text-foreground/70">{feature.description}</CardDescription>
                       </CardContent>
                     </Card>
                   </motion.div>

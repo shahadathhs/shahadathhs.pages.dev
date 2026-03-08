@@ -18,7 +18,7 @@ export default function ProjectCard({
   language,
 }: ProjectCardProps) {
   return (
-    <div className="group border-b border-border/50 hover:bg-muted/30 transition-all px-4 -mx-4 rounded-lg">
+    <div className="group border-b border-border/50 hover:bg-accent/5 transition-all px-4 -mx-4 rounded-lg">
       <a
         href={url}
         target="_blank"
@@ -27,23 +27,23 @@ export default function ProjectCard({
       >
         <div className="flex-1 space-y-3">
           <div className="flex items-center gap-3">
-            <Github className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-            <h3 className="text-xl md:text-2xl font-bold group-hover:text-primary transition-colors leading-tight">
+            <Github className="h-5 w-5 text-foreground/60 group-hover:text-accent transition-colors" />
+            <h3 className="text-xl md:text-2xl font-bold group-hover:text-accent transition-colors leading-tight text-foreground">
               {name}
             </h3>
             {language && (
-              <span className="px-2 py-0.5 bg-primary/10 text-primary rounded-full text-[10px] font-bold uppercase tracking-tighter">
+              <span className="px-2 py-0.5 bg-accent/10 text-accent rounded-full text-[10px] font-bold uppercase tracking-tighter">
                 {language}
               </span>
             )}
           </div>
 
-          <p className="text-muted-foreground line-clamp-2 text-sm md:text-base leading-relaxed italic max-w-3xl">
+          <p className="text-foreground/70 line-clamp-2 text-sm md:text-base leading-relaxed italic max-w-3xl">
             {description ||
               'Explore the source code on GitHub for more details...'}
           </p>
 
-          <div className="flex items-center gap-6 text-muted-foreground text-xs font-medium">
+          <div className="flex items-center gap-6 text-foreground/70 text-xs font-medium">
             <span className="flex items-center gap-1.5">
               <Star className="h-3.5 w-3.5" />
               {stars}
@@ -55,7 +55,7 @@ export default function ProjectCard({
           </div>
         </div>
 
-        <div className="flex items-center text-primary font-bold text-sm group-hover:translate-x-1 transition-transform">
+        <div className="flex items-center text-accent font-bold text-sm group-hover:translate-x-1 transition-transform">
           View Repository
           <ExternalLink className="ml-2 h-4 w-4" />
         </div>

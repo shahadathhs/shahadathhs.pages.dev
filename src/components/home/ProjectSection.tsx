@@ -74,15 +74,15 @@ export default function ProjectSection() {
       id="projects"
       className="relative w-full mt-10 border rounded overflow-clip scroll-mt-24"
     >
-      <section className="w-full bg-white dark:bg-neutral-950 py-16 px-4 md:px-8 lg:px-16">
+      <section className="w-full bg-background py-16 px-4 md:px-8 lg:px-16">
         <div className="max-w-7xl mx-auto">
           {/* Header Block */}
           <div className="flex flex-col max-w-4xl mb-10 gap-4">
             <div>
-              <h2 className="text-4xl mb-4 font-bold dark:text-white text-black">
+              <h2 className="text-4xl mb-4 font-bold text-foreground">
                 Open Source Projects
               </h2>
-              <p className="mt-2 text-neutral-700 dark:text-neutral-300  text-base max-w-2xl">
+              <p className="mt-2 text-foreground/70 text-base max-w-2xl">
                 A collection of my recent backend tools, infrastructure
                 templates, and full-stack experiments.
               </p>
@@ -90,15 +90,15 @@ export default function ProjectSection() {
           </div>
 
           {isRateLimited && (
-            <div className="mb-10 p-6 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50 flex items-start gap-4">
-              <div className="p-2 rounded-full bg-amber-100 dark:bg-amber-900/50">
-                <AlertCircle className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+            <div className="mb-10 p-6 rounded-xl bg-accent/10 border border-accent/40 flex items-start gap-4">
+              <div className="p-2 rounded-full bg-accent/20">
+                <AlertCircle className="w-6 h-6 text-accent" />
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-bold text-amber-900 dark:text-amber-100">
+                <h3 className="text-lg font-bold text-foreground">
                   GitHub API Rate Limit Reached
                 </h3>
-                <p className="mt-1 text-amber-800 dark:text-amber-200 text-sm">
+                <p className="mt-1 text-foreground/70 text-sm">
                   The projects below are currently being served from cache. New
                   updates will be visible once the rate limit resets (usually in
                   less than an hour). This happens because unauthenticated
