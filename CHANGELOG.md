@@ -1,3 +1,13 @@
+# [1.3.0](https://github.com/shahadathhs/shahadathhs-portfolio/compare/v1.2.0...v1.3.0) (2026-03-08)
+
+### Bug Fixes
+
+- build error resolved ([e312519](https://github.com/shahadathhs/shahadathhs-portfolio/commit/e31251904b659edd3a957e401f4bc9e071ae43ff))
+
+### Features
+
+- revise navigation bar for cohesive dark theme ([9197875](https://github.com/shahadathhs/shahadathhs-portfolio/commit/91978750ca65101176e3c9ff95e48e1f29662524))
+
 # [1.2.0](https://github.com/shahadathhs/shahadathhs-portfolio/compare/v1.1.0...v1.2.0) (2026-03-08)
 
 ### Features
