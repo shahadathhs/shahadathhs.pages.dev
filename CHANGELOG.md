@@ -1,3 +1,13 @@
+# [1.2.0](https://github.com/shahadathhs/shahadathhs-portfolio/compare/v1.1.0...v1.2.0) (2026-03-08)
+
+### Features
+
+- implement client-side caching for medium and gitHub data ([e6ec2e9](https://github.com/shahadathhs/shahadathhs-portfolio/commit/e6ec2e9953167f50a68acf3ba4986abae53b4de8))
+- implement scroll-based active navigation highlighting and a motion-animated underline ([d0376d1](https://github.com/shahadathhs/shahadathhs-portfolio/commit/d0376d1586b79511b5809e28b7650a882b63e6cd))
+- refine section header layouts, update hero content, and improved responsiveness ([00d2be2](https://github.com/shahadathhs/shahadathhs-portfolio/commit/00d2be2c07cdbca5d2f3e4ffb14a3721606097b9))
+- remove theme provider and mode toggle, enforce dark mode ([e2da5aa](https://github.com/shahadathhs/shahadathhs-portfolio/commit/e2da5aa94af64a2ff5b745c4655eb5d8a1d732c1))
+- update skills, about me, and experience data to reflect expanded expertise and new roles ([1a38b03](https://github.com/shahadathhs/shahadathhs-portfolio/commit/1a38b033feec89db2785a88bbc6749a55532d173))
+
 # [1.1.0](https://github.com/shahadathhs/shahadathhs-portfolio/compare/v1.0.0...v1.1.0) (2026-01-25)
 
 ### Bug Fixes
