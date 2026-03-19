@@ -68,38 +68,50 @@ export default function BentoLayout() {
       </BentoCell>
 
       {/* Skills Cell */}
-      <BentoCell className="md:col-span-3 lg:col-span-3 lg:row-span-1">
-        <h2 className="text-xl font-bold mb-4">Core Stack</h2>
-        <div className="flex flex-wrap gap-2">
-          {skills
-            .slice(0, 3)
-            .map((s) => s.description)
-            .flat()
-            .map((tech) => (
-              <Badge
-                key={tech}
-                variant="outline"
-                className="glass border-foreground/10"
-              >
-                {tech}
-              </Badge>
-            ))}
+      <BentoCell className="md:col-span-3 lg:col-span-3 lg:row-span-2 space-y-6 overflow-y-auto scrollbar-hide">
+        <h2 className="text-xl font-bold">Technical Stack</h2>
+        <div className="space-y-5">
+          {skills.map((skillGroup) => (
+            <div key={skillGroup.category}>
+              <h3 className="text-[10px] font-bold uppercase tracking-widest opacity-40 mb-3">
+                {skillGroup.category}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {skillGroup.items.map((tech) => (
+                  <Badge
+                    key={tech}
+                    variant="outline"
+                    className="glass border-foreground/10 text-[10px] py-0 px-2"
+                  >
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </BentoCell>
 
       {/* Experience Cell */}
-      <BentoCell className="md:col-span-3 lg:col-span-3 lg:row-span-2 overflow-y-auto max-h-[400px]">
+      <BentoCell className="md:col-span-3 lg:col-span-3 lg:row-span-2 overflow-y-auto max-h-[500px] scrollbar-hide">
         <h2 className="text-xl font-bold mb-6">Experience</h2>
-        <div className="space-y-6">
-          {experienceData.slice(0, 2).map((exp, i) => (
-            <div key={i} className="border-l-2 border-accent/20 pl-4 py-1">
-              <span className="text-[10px] font-bold uppercase tracking-widest opacity-50">
+        <div className="space-y-8">
+          {experienceData.map((exp, i) => (
+            <div
+              key={i}
+              className="relative pl-6 border-l border-foreground/5 space-y-1 group/exp"
+            >
+              <div className="absolute left-[-5px] top-2 w-2 h-2 rounded-full bg-accent scale-0 group-hover/exp:scale-100 transition-transform duration-500" />
+              <span className="text-[10px] font-bold uppercase tracking-widest opacity-50 block">
                 {exp.title}
               </span>
-              <h3 className="font-bold text-sm lg:text-base">
+              <h3 className="font-bold text-sm lg:text-base leading-tight">
                 {exp.designation}
               </h3>
-              <p className="text-xs text-muted-foreground">{exp.company}</p>
+              <p className="text-xs text-muted-foreground font-medium">
+                {exp.company}
+              </p>
+              {i < experienceData.length - 1 && <div className="pt-2" />}
             </div>
           ))}
         </div>

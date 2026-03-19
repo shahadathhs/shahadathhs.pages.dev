@@ -10,7 +10,7 @@ export function useActiveSection(sectionIds: string[]) {
 
     const observerOptions = {
       root: null,
-      rootMargin: '-20% 0px -70% 0px', // Adjust to trigger when section is in view
+      rootMargin: '-30% 0px -60% 0px',
       threshold: 0,
     };
 
@@ -24,14 +24,31 @@ export function useActiveSection(sectionIds: string[]) {
 
     const observer = new IntersectionObserver(handleIntersect, observerOptions);
 
-    sectionIds.forEach((id) => {
-      const element = document.getElementById(id.replace('#', ''));
+    // Always observe hero to ensure we can clear highlights
+    const observedIds = [
+      'hero',
+      ...sectionIds.map((id) => id.replace('#', '')),
+    ];
+
+    observedIds.forEach((id) => {
+      const element = document.getElementById(id);
       if (element) {
         observer.observe(element);
       }
     });
 
-    return () => observer.disconnect();
+    // Fallback for very top of page
+    const handleScroll = () => {
+      if (window.scrollY < 100) {
+        setActiveSection('#hero');
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [sectionIds]);
 
   return activeSection;
