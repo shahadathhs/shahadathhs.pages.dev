@@ -4,8 +4,8 @@
 
 <p align="left">
   <a href="https://www.linkedin.com/in/shahadathhs/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-  <a href="https://shahadathhs.vercel.app"><img src="https://img.shields.io/badge/Portfolio-website-blue?style=for-the-badge&logo=vercel" alt="Portfolio" /></a>
-  <a href="mailto:shahadathhs.dev@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+  <a href="https://shahadathhs.pages.dev"><img src="https://img.shields.io/badge/Portfolio-website-blue?style=for-the-badge&logo=vercel" alt="Portfolio" /></a>
+  <a href="mailto:shahadathhossensajib732@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
 </p>
 
 ---
@@ -54,10 +54,10 @@ I specialize in **microservices architecture**, developing large, configurable b
 
 ## 🔗 Connect With Me
 
-- **Portfolio**: [shahadathhs.vercel.app](https://shahadathhs.vercel.app)
+- **Portfolio**: [shahadathhs.pages.dev](https://shahadathhs.pages.dev)
 - **LinkedIn**: [in/shahadathhs](https://www.linkedin.com/in/shahadathhs/)
 - **Twitter**: [@shahadathhs](https://x.com/shahadathhs)
-- **Email**: [shahadathhs.dev@gmail.com](mailto:shahadathhs.dev@gmail.com)
+- **Email**: [shahadathhossensajib732@gmail.com](mailto:shahadathhossensajib732@gmail.com)
 
 ---
 
