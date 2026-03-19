@@ -24,25 +24,27 @@ export const MobileNavDropdown = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="h-10 w-10 text-nav-foreground hover:text-nav-accent hover:bg-nav-accent/10"
+          className="h-10 w-10 text-foreground hover:bg-foreground/5 rounded-full transition-all"
         >
-          <Menu className="h-5 w-5" />
+          <Menu className="h-6 w-6" />
           <span className="sr-only">Toggle navigation menu</span>
         </Button>
       </SheetTrigger>
       <SheetContent
         side="right"
-        className="z-[10000] w-72 border-nav-border/30 bg-nav-background"
+        className="z-[1000] w-full max-w-xs border-foreground/5 glass"
       >
-        <SheetHeader className="mb-8 flex flex-row items-center justify-between space-y-0 border-b border-nav-border/20 pb-6">
-          <h2 className="text-nav-foreground font-bold text-lg">Navigation</h2>
+        <SheetHeader className="mb-12 flex flex-row items-center justify-between space-y-0 border-b border-foreground/5 pb-8">
+          <h2 className="text-foreground font-bold text-xl tracking-tighter uppercase">
+            Menu
+          </h2>
         </SheetHeader>
-        <nav className="flex flex-col space-y-1">
+        <nav className="flex flex-col space-y-4">
           {navLinks.map((link) => (
             <div key={nanoid()} onClick={handleItemClick}>
               <ActiveLink
                 href={link.link}
-                extraClasses="text-base block px-3 py-3 rounded-md hover:bg-nav-accent/5 w-full"
+                extraClasses="text-lg font-bold tracking-widest block w-full py-2"
               >
                 {link.title}
               </ActiveLink>

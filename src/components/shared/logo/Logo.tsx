@@ -1,15 +1,23 @@
+'use client';
+
 import Link from 'next/link';
 
 export default function Logo() {
   return (
     <Link
       href="/"
-      className="group relative flex items-center gap-2 font-bold text-lg tracking-tight transition-opacity duration-300 hover:opacity-80"
+      className="group relative flex items-center gap-2 font-bold text-xl tracking-tighter transition-all duration-500"
     >
-      <div className="flex h-8 w-8 items-center justify-center rounded bg-nav-accent/10 ring-1 ring-nav-accent/30 group-hover:ring-nav-accent/60 transition-all duration-300">
-        <span className="text-nav-accent text-sm font-bold">S</span>
+      <div className="relative flex h-8 w-8 items-center justify-center">
+        <div className="absolute inset-0 bg-accent/20 rounded-full blur-sm group-hover:blur-md transition-all duration-500" />
+        <div className="relative z-10 text-accent font-black">S</div>
       </div>
-      <span className="hidden sm:inline text-nav-foreground">shahadathhs</span>
+      <span className="hidden sm:inline font-bold tracking-tighter group-hover:tracking-normal transition-all duration-500">
+        shahadath
+        <span className="text-accent underline decoration-2 underline-offset-4">
+          hs
+        </span>
+      </span>
     </Link>
   );
 }

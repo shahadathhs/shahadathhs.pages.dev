@@ -18,17 +18,17 @@ export function ActiveLink({
   return (
     <Link
       href={href}
-      className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 ${
+      className={`relative px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-500 ${
         isActive
-          ? 'text-nav-accent'
-          : 'text-nav-foreground hover:text-nav-foreground/80'
+          ? 'text-foreground'
+          : 'text-muted-foreground hover:text-foreground'
       } ${extraClasses}`}
     >
-      {children}
+      <span className="relative z-10">{children}</span>
       {isActive && (
         <motion.div
-          layoutId="nav-underline"
-          className="absolute bottom-0 left-3 right-3 h-px bg-gradient-to-r from-nav-accent/0 via-nav-accent to-nav-accent/0"
+          layoutId="nav-pill"
+          className="absolute inset-0 bg-foreground/5 rounded-full"
           transition={{ type: 'spring', stiffness: 380, damping: 30 }}
         />
       )}

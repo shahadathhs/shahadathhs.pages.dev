@@ -18,46 +18,44 @@ export default function ProjectCard({
   language,
 }: ProjectCardProps) {
   return (
-    <div className="group border-b border-border/50 hover:bg-muted/30 transition-all px-4 -mx-4 rounded-lg">
+    <div className="group relative transition-all duration-500">
       <a
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex flex-col md:flex-row md:items-center justify-between py-8 gap-6"
+        className="flex flex-col md:flex-row md:items-center justify-between py-10 gap-8"
       >
-        <div className="flex-1 space-y-3">
-          <div className="flex items-center gap-3">
-            <Github className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-            <h3 className="text-xl md:text-2xl font-bold group-hover:text-primary transition-colors leading-tight">
+        <div className="flex-1 space-y-4">
+          <div className="flex items-center gap-4">
+            <h3 className="text-2xl md:text-3xl font-bold tracking-tight group-hover:text-accent transition-colors duration-500 leading-none">
               {name}
             </h3>
             {language && (
-              <span className="px-2 py-0.5 bg-primary/10 text-primary rounded-full text-[10px] font-bold uppercase tracking-tighter">
+              <span className="px-3 py-1 bg-foreground/5 text-foreground/60 rounded-full text-[10px] font-bold uppercase tracking-widest border border-foreground/5">
                 {language}
               </span>
             )}
           </div>
 
-          <p className="text-muted-foreground line-clamp-2 text-sm md:text-base leading-relaxed italic max-w-3xl">
-            {description ||
-              'Explore the source code on GitHub for more details...'}
+          <p className="text-muted-foreground line-clamp-2 text-sm md:text-lg leading-relaxed max-w-4xl">
+            {description || 'No description provided.'}
           </p>
 
-          <div className="flex items-center gap-6 text-muted-foreground text-xs font-medium">
-            <span className="flex items-center gap-1.5">
-              <Star className="h-3.5 w-3.5" />
+          <div className="flex items-center gap-6 text-muted-foreground/60 text-xs font-semibold tracking-wider uppercase">
+            <span className="flex items-center gap-2">
+              <Star className="h-4 w-4" />
               {stars}
             </span>
-            <span className="flex items-center gap-1.5">
-              <GitFork className="h-3.5 w-3.5" />
+            <span className="flex items-center gap-2">
+              <GitFork className="h-4 w-4" />
               {forks}
             </span>
+            <Github className="h-4 w-4 group-hover:text-foreground transition-colors" />
           </div>
         </div>
 
-        <div className="flex items-center text-primary font-bold text-sm group-hover:translate-x-1 transition-transform">
-          View Repository
-          <ExternalLink className="ml-2 h-4 w-4" />
+        <div className="flex items-center justify-center shrink-0 w-12 h-12 rounded-full border border-foreground/5 group-hover:bg-foreground group-hover:text-background transition-all duration-500 group-hover:scale-110">
+          <ExternalLink className="h-5 w-5" />
         </div>
       </a>
     </div>

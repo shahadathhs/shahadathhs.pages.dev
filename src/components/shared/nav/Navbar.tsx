@@ -10,21 +10,19 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  // * Listen for scroll events to update sticky behavior.
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // * Update window width state.
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 1024);
     };
-    handleResize(); // initial check
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -32,25 +30,24 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        'sticky top-0 z-[9999] w-full transition-all duration-500',
-        scrolled
-          ? 'py-3 border-b border-nav-border/30 backdrop-blur-xl bg-nav-background/80'
-          : 'py-6 border-b border-nav-border/0 bg-nav-background',
+        'fixed top-0 inset-x-0 z-[100] transition-all duration-700 ease-in-out pointer-events-none',
+        scrolled ? 'py-4' : 'py-6',
       )}
     >
-      <div className="container mx-auto max-w-6xl px-2 lg:px-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
+      <div
+        className={cn(
+          'max-w-6xl mx-auto flex items-center justify-between transition-all duration-700 px-8 py-3 rounded-full border border-foreground/5 pointer-events-auto glass bg-background/40 shadow-2xl shadow-foreground/5',
+        )}
+      >
+        {/* Logo */}
+        <div className="shrink-0">
           <Logo />
+        </div>
 
-          {/* Navigation Links */}
-          <div className="flex items-center">
-            {/* Desktop Navigation: Large screen links */}
-            {!isMobile && <LargeNavLinks />}
-
-            {/* Mobile Navigation: Render dropdown for mobile devices */}
-            {isMobile && <MobileNavDropdown />}
-          </div>
+        {/* Navigation */}
+        <div className="flex items-center gap-6 overflow-hidden">
+          {!isMobile && <LargeNavLinks />}
+          {isMobile && <MobileNavDropdown />}
         </div>
       </div>
     </nav>

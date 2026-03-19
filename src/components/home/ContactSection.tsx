@@ -1,15 +1,11 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { IconBrandMedium } from '@tabler/icons-react';
-import { CheckCircle, Copy, Github, Linkedin, Mail } from 'lucide-react';
 import { useState } from 'react';
+import { motion } from 'motion/react';
+import { Check, Copy, ArrowUpRight } from 'lucide-react';
 import { toast } from 'sonner';
-import { TypingAnimation } from '../magicui/typing-animation';
-
-import { BorderBeam } from '../magicui/border-beam';
-
 import { contactEmail } from '@/constant/contactInfo';
+import { socialLinks } from '@/constant/socialLinks';
 
 export default function ContactSection() {
   const [copied, setCopied] = useState(false);
@@ -18,115 +14,84 @@ export default function ContactSection() {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(email);
     setCopied(true);
-    toast.success('Email copied to clipboard', {
-      icon: '📋',
-      duration: 2000,
-      description: 'You can now paste it anywhere you need.',
-    });
-
-    setTimeout(() => {
-      setCopied(false);
-    }, 2000);
+    toast.success('Email copied to clipboard');
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <div
+    <section
       id="contact"
-      className="relative w-full mt-10 border rounded overflow-clip scroll-mt-24"
+      className="py-32 max-w-6xl mx-auto scroll-mt-24 px-4 md:px-0"
     >
-      <section className="w-full bg-white dark:bg-neutral-950 py-16 px-4 md:px-8 lg:px-16">
-        <div className="max-w-7xl mx-auto">
-          {/* Header Block */}
-          <div className="flex flex-col items-start text-left max-w-2xl mb-10">
-            <h2 className="text-3xl font-semibold dark:text-white text-black  mb-4">
-              <TypingAnimation>Get in touch</TypingAnimation>
-            </h2>
-            <p className="text-neutral-700 dark:text-neutral-300  text-base max-w-4xl">
-              {/* I&apos;m always open to new opportunities, collaborations, or just
-              a friendly chat about backend architecture and API design. */}
-              I&apos;m a backend developer passionate about building clean,
-              scalable systems. Here&apos;s a bit about my journey and what I
-              bring to the table.
-            </p>
-          </div>
+      <div className="flex flex-col items-center justify-center text-center space-y-16">
+        {/* Headline */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="space-y-6 max-w-3xl"
+        >
+          <h2 className="text-5xl md:text-8xl font-bold tracking-tighter leading-none">
+            Let&apos;s build something{' '}
+            <span className="text-accent italic">exceptional</span>.
+          </h2>
+          <p className="text-lg md:text-xl text-muted-foreground font-medium opacity-60">
+            Currently open to new opportunities and interesting collaborations.
+          </p>
+        </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-6xl pt-8 mx-auto">
-            {/* github */}
-            <a
-              href="https://github.com/shahadathhs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center p-6 bg-primary/5 rounded-2xl hover:bg-primary/10 transition-colors border border-primary/10 group"
-            >
-              <div className="bg-primary/10 p-4 rounded-full mb-4 group-hover:scale-110 transition-transform">
-                <Github className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="font-bold text-lg mb-1">GitHub</h3>
-              <span className="text-primary text-sm font-medium">
-                @shahadathhs
-              </span>
-            </a>
-
-            {/* linkedin */}
-            <a
-              href="https://www.linkedin.com/in/shahadathhs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center p-6 bg-primary/5 rounded-2xl hover:bg-primary/10 transition-colors border border-primary/10 group"
-            >
-              <div className="bg-primary/10 p-4 rounded-full mb-4 group-hover:scale-110 transition-transform">
-                <Linkedin className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="font-bold text-lg mb-1">LinkedIn</h3>
-              <span className="text-primary text-sm font-medium">
-                in/shahadathhs
-              </span>
-            </a>
-
-            {/* email */}
-            <div className="flex flex-col items-center p-6 bg-primary/5 rounded-2xl hover:bg-primary/10 transition-colors border border-primary/10 group relative">
-              <div className="bg-primary/10 p-4 rounded-full mb-4 group-hover:scale-110 transition-transform">
-                <Mail className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="font-bold text-lg mb-1">Email</h3>
-              <div className="flex items-center gap-2">
-                <span className="text-primary text-sm font-medium truncate max-w-[150px]">
-                  {email}
-                </span>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={copyToClipboard}
-                  className="h-8 w-8 p-0"
-                >
-                  {copied ? (
-                    <CheckCircle className="h-4 w-4 text-green-500" />
-                  ) : (
-                    <Copy className="h-4 w-4" />
-                  )}
-                </Button>
-              </div>
+        {/* Primary CTA - The Email Card */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="relative w-full max-w-4xl group"
+        >
+          <div className="absolute inset-x-0 -bottom-12 -top-12 bg-accent/5 rounded-[4rem] blur-3xl group-hover:bg-accent/10 transition-colors" />
+          <button
+            onClick={copyToClipboard}
+            className="relative overflow-hidden w-full glass p-12 md:p-16 rounded-[3rem] border-foreground/5 hover:border-foreground/10 transition-all flex flex-col items-center gap-6 group/btn"
+          >
+            <span className="text-xs font-bold uppercase tracking-widest opacity-40 group-hover/btn:opacity-100 transition-opacity">
+              Contact me at
+            </span>
+            <span className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tighter break-all">
+              {email}
+            </span>
+            <div className="flex items-center gap-2 px-6 py-3 rounded-full bg-foreground text-background text-sm font-bold tracking-wide transition-all group-hover/btn:scale-105">
+              {copied ? (
+                <Check className="w-4 h-4" />
+              ) : (
+                <Copy className="w-4 h-4" />
+              )}
+              {copied ? 'Copied' : 'Copy Email'}
             </div>
+          </button>
+        </motion.div>
 
-            {/* medium */}
-            <a
-              href="https://medium.com/@shahadathhs"
+        {/* Socials - Minimalist Footer of the Section */}
+        <div className="flex flex-wrap justify-center gap-8 md:gap-16 pt-12">
+          {socialLinks.map((link, i) => (
+            <motion.a
+              key={link.name}
+              href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center p-6 bg-primary/5 rounded-2xl hover:bg-primary/10 transition-colors border border-primary/10 group"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
+              className="group flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-all"
             >
-              <div className="bg-primary/10 p-4 rounded-full mb-4 group-hover:scale-110 transition-transform">
-                <IconBrandMedium className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="font-bold text-lg mb-1">Medium</h3>
-              <span className="text-primary text-sm font-medium">
-                @shahadathhs
-              </span>
-            </a>
-          </div>
+              <link.icon className="w-4 h-4 opacity-40 group-hover:opacity-100 transition-opacity" />
+              {link.name}
+              <ArrowUpRight className="w-3 h-3 opacity-0 -ml-2 group-hover:opacity-40 group-hover:ml-0 transition-all" />
+            </motion.a>
+          ))}
         </div>
-      </section>
-      <BorderBeam duration={200} size={250} />
-    </div>
+      </div>
+    </section>
   );
 }
