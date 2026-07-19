@@ -1,16 +1,19 @@
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import Footer from '@/components/Footer';
+import Dock from '@/components/Dock';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const spaceGrotesk = Space_Grotesk({
+  variable: '--font-sans',
   subsets: ['latin'],
+  display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const jetbrainsMono = JetBrains_Mono({
+  variable: '--font-mono',
   subsets: ['latin'],
+  display: 'swap',
 });
 
 const siteUrl = 'https://shahadathhs.pages.dev';
@@ -247,8 +250,9 @@ export default function RootLayout({
         ))}
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
+        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased font-sans`}
       >
+        <Dock />
         <main className="mx-auto max-w-2xl min-h-screen px-6 py-24">
           {children}
           <Footer />

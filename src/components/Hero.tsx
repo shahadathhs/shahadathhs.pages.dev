@@ -3,7 +3,7 @@ import { socialLinks } from '@/constant/socialLinks';
 
 export default function Hero() {
   return (
-    <section className="space-y-4 mb-16">
+    <section id="hero" className="space-y-4 mb-16 scroll-mt-24">
       <h1 className="text-4xl font-bold">{heroData.name}</h1>
       <p className="text-muted-foreground text-lg font-medium leading-relaxed">
         {heroData.role} | Node.js, Python | AI & DevOps

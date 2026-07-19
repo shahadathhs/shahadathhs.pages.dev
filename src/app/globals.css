@@ -6,8 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
   --color-border: var(--border);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
@@ -60,6 +60,13 @@ html {
     @apply bg-background text-foreground font-sans selection:bg-accent/20 tracking-tight;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tighter;
+    @apply font-mono tracking-tight;
+  }
+  /* Terminal-style labels use mono for developer feel */
+  [class~='tracking-widest'] {
+    font-family: var(--font-mono);
+  }
+  code, pre, kbd, samp {
+    @apply font-mono;
   }
 }

@@ -31,7 +31,7 @@ export default function Blogs() {
   if (posts.length === 0) return null;
 
   return (
-    <section className="space-y-8 mb-16">
+    <section id="blogs" className="space-y-8 mb-16 scroll-mt-24">
       <h2 className="text-xs font-bold uppercase tracking-widest opacity-40">
         Writing
       </h2>

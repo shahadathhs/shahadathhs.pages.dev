@@ -3,7 +3,7 @@ import { heroData } from '@/constant/heroData';
 
 export default function Contact() {
   return (
-    <section className="space-y-4 mb-16">
+    <section id="contact" className="space-y-4 mb-16 scroll-mt-24">
       <h2 className="text-xs font-bold uppercase tracking-widest opacity-40">
         Contact
       </h2>

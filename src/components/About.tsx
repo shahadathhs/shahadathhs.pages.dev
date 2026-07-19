@@ -2,7 +2,7 @@ import { aboutBands } from '@/constant/aboutMe';
 
 export default function About() {
   return (
-    <section className="space-y-4 mb-16">
+    <section id="about" className="space-y-4 mb-16 scroll-mt-24">
       <h2 className="text-xs font-bold uppercase tracking-widest opacity-40">
         About
       </h2>

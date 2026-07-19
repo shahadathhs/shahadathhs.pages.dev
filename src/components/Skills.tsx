@@ -2,7 +2,7 @@ import { skills } from '@/constant/skillsData';
 
 export default function Skills() {
   return (
-    <section className="space-y-8 mb-16">
+    <section id="skills" className="space-y-8 mb-16 scroll-mt-24">
       <h2 className="text-xs font-bold uppercase tracking-widest opacity-40">
         Skills
       </h2>

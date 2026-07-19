@@ -2,7 +2,7 @@ import { experienceData } from '@/constant/experienceData';
 
 export default function Experience() {
   return (
-    <section className="space-y-8 mb-16">
+    <section id="experience" className="space-y-8 mb-16 scroll-mt-24">
       <h2 className="text-xs font-bold uppercase tracking-widest opacity-40">
         Experience
       </h2>
