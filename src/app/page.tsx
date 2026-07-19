@@ -1,15 +1,21 @@
-import BentoLayout from '@/components/home/bento/BentoLayout';
-import ContactSection from '@/components/home/ContactSection';
-import MediumBlogSection from '@/components/home/MediumBlogSection';
-import ProjectSection from '@/components/home/ProjectSection';
+import Hero from '@/components/Hero';
+import About from '@/components/About';
+import Experience from '@/components/Experience';
+import Skills from '@/components/Skills';
+import Projects from '@/components/Projects';
+import Blogs from '@/components/Blogs';
+import Contact from '@/components/Contact';
 
 export default function Home() {
   return (
     <>
-      <BentoLayout />
-      <ProjectSection />
-      <MediumBlogSection />
-      <ContactSection />
+      <Hero />
+      <About />
+      <Experience />
+      <Skills />
+      <Projects />
+      <Blogs />
+      <Contact />
     </>
   );
 }
